@@ -2,7 +2,7 @@
 
 A set of environments to test the interplay of the different components of the SDG Dashboard
 
-## Getting started
+## Getting started
 
 ### Run the latest containers to have a look. 
 
@@ -62,7 +62,7 @@ It is mandatory to clone the following repositories into the same parent directo
 
 | Directory | all | backend | frontend |
 | :--- | :---: | :---: | :---: |
-| [../ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) | ✅ | ✅ | | 
+| [../ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) | ✅ | ✅ | | 
 | [../dgraph-schema](https://github.com/sustainability-zhaw/dgraph-schema) | ✅ | ✅ | ✅ | 
 | [../extraction-dspace](https://github.com/sustainability-zhaw/extraction-dspace) | ✅ | ✅ | | 
 | [../keyword-webhook](https://github.com/sustainability-zhaw/keyword-webhook) | ✅ | ✅ | ✅ | 

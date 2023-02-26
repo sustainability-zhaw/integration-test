@@ -30,22 +30,26 @@ services:
     depends_on:
       db_init:
         condition: service_completed_successfully 
+      mq:
+        condition: service_started
+      indexer:
+        condition: service_started
     configs:
       - source: kwconfig
         target: /etc/app/config.json
 
-  dspacer: 
-    build:
-      context: ../extraction-dspace/  
-    restart: "no"
-    networks:
-      - dgraphnet
-    depends_on:
-      db_init:
-        condition: service_completed_successfully 
-    configs:
-      - source: dcconfig
-        target: /etc/app/config.json
+  # dspacer: 
+  #   build:
+  #     context: ../extraction-dspace/  
+  #   restart: "no"
+  #   networks:
+  #     - dgraphnet
+  #   depends_on:
+  #     db_init:
+  #       condition: service_completed_successfully 
+  #   configs:
+  #     - source: dcconfig
+  #       target: /etc/app/config.json
 
   # adresolver: 
   #   build:
@@ -68,6 +72,8 @@ services:
     depends_on:
       db_init:
         condition: service_completed_successfully
+      mq:
+        condition: service_started
     environment:
       BATCH_INTERVAL: 20
       DB_HOST: db:8080

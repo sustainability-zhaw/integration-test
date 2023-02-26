@@ -3,5 +3,8 @@
     "branch": "main",
     "target_path": "data/sdgs",
     "port": 8090,
-    "relax": "no"
+    "relax": "no",
+    "mq_host": "mq",
+    "mq_exchange": "zhaw-km",
+    "mq_key": "indexer.update"
 }

@@ -1,0 +1,29 @@
+{
+    # Email used for letsencypt or zerossl
+    email foo@bar.com
+
+    # expose api admin on the network
+    # admin  :2019
+    admin off
+}
+
+
+:80 {
+    rewrite /api/* /api/graphql
+    rewrite /api /api/graphql
+    
+    rewrite /ratel /ratel/
+
+    handle_path /api/* {
+        reverse_proxy db:8080
+    }
+
+    handle_path /graphiql/* {
+        reverse_proxy gql_browser:80
+    }
+
+    handle_path /rabbitmq/* {
+        # Expose rabbitmq management port for development
+        reverse_proxy mq:15672
+    }
+}

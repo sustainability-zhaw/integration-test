@@ -1,0 +1,47 @@
+{
+    # Email used for letsencypt or zerossl
+    email foo@bar.com
+
+    # expose api admin on the network
+    # admin  :2019
+    admin off
+}
+
+
+:80 {
+    redir / /dashboard/
+
+    rewrite /webhook/* /webhook/payload
+    rewrite /webhook /webhook/payload
+
+    rewrite /api/* /api/graphql
+    rewrite /api /api/graphql
+    
+    rewrite /stats/* /stats/query
+    rewrite /stats /stats/query
+    
+    handle_path /dashboard/* {
+        reverse_proxy app:80
+    }
+
+    handle_path /webhook/* {
+        reverse_proxy db_keywords:8090
+    }
+
+    handle_path /api/* {
+        reverse_proxy db:8080
+    }
+
+    handle_path /stats/* {
+        reverse_proxy db:8080
+    }
+
+    handle_path /graphiql/* {
+        reverse_proxy gql_browser:80
+    }
+
+    handle_path /rabbitmq/* {
+        # Expose rabbitmq management port for development
+        reverse_proxy mq:15672
+    }
+}

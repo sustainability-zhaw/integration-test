@@ -67,6 +67,9 @@ services:
     build:
       context: ../sdg-indexer/  
     restart: "no"
+    deploy:
+      mode: replicated
+      replicas: 3
     networks:
       - dgraphnet
     depends_on:
@@ -77,7 +80,7 @@ services:
     environment:
       BATCH_INTERVAL: 20
       DB_HOST: db:8080
-      LOG_LEVEL: DEBUG
+      LOG_LEVEL: INFO
       
   # DEV ENVIRONMENT COMPONENTS
   # These tools provide access to query browsers and the reverse proxy

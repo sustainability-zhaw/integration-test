@@ -47,17 +47,17 @@ services:
       - source: dcconfig
         target: /etc/app/config.json
 
-  adresolver: 
-    build:
-      context: ../ad-resolver/  
-    restart: "no"
-    networks:
-      - dgraphnet
-    depends_on:
-      db_init:
-        condition: service_completed_successfully
-    env_file:
-      - ./contrib/ad_config.env 
+  # adresolver: 
+  #   build:
+  #     context: ../ad-resolver/  
+  #   restart: "no"
+  #   networks:
+  #     - dgraphnet
+  #   depends_on:
+  #     db_init:
+  #       condition: service_completed_successfully
+  #   env_file:
+  #     - ./contrib/ad_config.env 
 
   indexer: 
     build:

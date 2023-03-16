@@ -9,6 +9,15 @@ services:
     - source: sdconfig
       target: /usr/share/caddy/config.json
 
+  # dlgw: 
+  #   build:
+  #     context: ../download-gateway/
+  #   networks:
+  #   - dgraphnet
+  #   configs:
+  #   - source: dlgw_config
+  #     target: /etc/app/config.yaml
+
   db:
     # hostname: dgraph_standalone # Hardcoded in db_init entrypoint.sh
     image: dgraph/standalone:v22.0.2
@@ -127,4 +136,5 @@ configs:
     file: ./contrib/digital_collection.json
   kwconfig:
     file: ./contrib/kwconfig.json
-
+  # dlgw_config:
+  #   file: ./contrib/dlgw.yaml

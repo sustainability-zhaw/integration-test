@@ -44,4 +44,9 @@
         # Expose rabbitmq management port for development
         reverse_proxy mq:15672
     }
+
+    handle_path /download/* {
+        # reverse_proxy dlgw:8080
+        reverse_proxy contrib-dlgw-1:8080
+    }
 }

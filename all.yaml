@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-698b8d7
+    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-a81162d
     restart: 'no'
     networks:
     - dgraphnet

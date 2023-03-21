@@ -1,12 +1,17 @@
 services:
   app:
-    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-7d191b6
+    image: caddy:2.6.2
+    # image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-7d191b6
+    # build:
+    #   context: ../sustainability-dashboard/
     restart: 'no'
     networks:
     - dgraphnet
     configs:
     - source: sdconfig
       target: /usr/share/caddy/config.json
+    volumes: 
+    - ../sustainability-dashboard/site:/usr/share/caddy
 
   db:
     # hostname: dgraph_standalone # Hardcoded in db_init entrypoint.sh

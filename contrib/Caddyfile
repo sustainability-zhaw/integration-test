@@ -19,7 +19,12 @@
     
     rewrite /stats/* /stats/query
     rewrite /stats /stats/query
-    
+
+    handle_path /dashboard/download/* {
+        reverse_proxy dlgw:8080
+        # reverse_proxy contrib-dlgw-1:8080
+    }
+
     handle_path /dashboard/* {
         reverse_proxy app:80
     }
@@ -45,8 +50,3 @@
         reverse_proxy mq:15672
     }
 
-    handle_path /download/* {
-        # reverse_proxy dlgw:8080
-        reverse_proxy contrib-dlgw-1:8080
-    }
-}

@@ -1,8 +1,8 @@
 {
-    "proto": "http://",
-    "host": "localhost:8080",
-    "path": "api/",
-    "stats": "stats/",
+    "proto": "",
+    "host": "",
+    "path": "/api/",
+    "stats": "/stats/",
     "static": 0,
     "debug": 2,
 
@@ -16,6 +16,7 @@
         "T", 
         "W",
         "R",
-        "V"
+        "V",
+        "X"
     ]
 }

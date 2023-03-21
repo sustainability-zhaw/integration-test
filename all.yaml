@@ -1,9 +1,6 @@
 services:
   app:
-    image: caddy:2.6.2
-    # image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-7d191b6
-    # build:
-    #   context: ../sustainability-dashboard/
+    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-698b8d7
     restart: 'no'
     networks:
     - dgraphnet
@@ -12,6 +9,17 @@ services:
       target: /usr/share/caddy/config.json
     volumes: 
     - ../sustainability-dashboard/site:/usr/share/caddy
+
+  dlgw: 
+    image: ghcr.io/sustainability-zhaw/download-gateway:sha-bba6ca5
+    # build:
+    #   context: ../download-gateway/
+    restart: 'no'
+    networks:
+    - dgraphnet
+    configs:
+    - source: dgconfig
+      target: /etc/app/config.yaml
 
   db:
     # hostname: dgraph_standalone # Hardcoded in db_init entrypoint.sh
@@ -122,3 +130,6 @@ configs:
     file: ./contrib/digital_collection.json
   kwconfig:
     file: ./contrib/kwconfig.json
+  dgconfig:
+    file: ./contrib/dlgw.yaml
+

@@ -1,2 +1,2 @@
-services:
-  dbhost: http://db:8080
+service:
+  dbhost: db:8080

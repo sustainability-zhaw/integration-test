@@ -81,6 +81,17 @@ services:
     env_file:
       - ./contrib/ad_config.env 
 
+  extraction_projects: 
+    image: ghcr.io/sustainability-zhaw/extraction-projects:sha-ea16132
+    restart: "no"
+    networks:
+      - dgraphnet
+    depends_on:
+      db_init:
+        condition: service_completed_successfully 
+    env_file:
+      - ./contrib/extraction_projects_config.env 
+
   indexer: 
     image: ghcr.io/sustainability-zhaw/sdg-indexer:sha-5ecb012
     restart: "no"

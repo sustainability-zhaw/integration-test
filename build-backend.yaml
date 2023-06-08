@@ -63,6 +63,18 @@ services:
   #   env_file:
   #     - ./contrib/ad_config.env 
 
+  # extraction_projects: 
+  #   build:
+  #     context: ../extraction-projects/  
+  #   restart: "no"
+  #   networks:
+  #     - dgraphnet
+  #   depends_on:
+  #     db_init:
+  #       condition: service_completed_successfully 
+  #   env_file:
+  #     - ./contrib/extraction_projects_config.env 
+
   indexer: 
     build:
       context: ../sdg-indexer/  

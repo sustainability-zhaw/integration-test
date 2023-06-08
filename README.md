@@ -65,9 +65,12 @@ It is mandatory to clone the following repositories into the same parent directo
 | [../ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) | ✅ | ✅ | | 
 | [../dgraph-schema](https://github.com/sustainability-zhaw/dgraph-schema) | ✅ | ✅ | ✅ | 
 | [../extraction-dspace](https://github.com/sustainability-zhaw/extraction-dspace) | ✅ | ✅ | | 
+| [../extraction-projects](https://github.com/sustainability-zhaw/extraction-projects) | ✅ | ✅ | | 
 | [../keyword-webhook](https://github.com/sustainability-zhaw/keyword-webhook) | ✅ | ✅ | ✅ | 
 | [../sdg-indexer](https://github.com/sustainability-zhaw/sdg-indexer) | ✅ | ✅ | | 
 | [../sustainability-dashboard](https://github.com/sustainability-zhaw/sustainability-dashboard) | ✅ | | ✅ | 
 
 Note that the `ad-resolver` requires a connection password that is passed through an env-file. For more information, please consult the [ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) repo.
+
+Note that the `extraction-projects` requires an API key that is passed through an env-file. For more information, please consult the [extraction-projects](https://github.com/sustainability-zhaw/extraction-projects) repo.
 

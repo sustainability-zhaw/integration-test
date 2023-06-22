@@ -1,73 +1,43 @@
-# Integration-Test
+# Integration Test
 
-A set of environments to test the interplay of the different components of the SDG Dashboard
+A set of docker compose configurations to localy test and verify the interplay of all services.
 
-## Getting started
+## Requirements
 
-### Run the latest containers to have a look. 
+## Overview
 
-```
-docker compose -f all.yaml up
-```
+### Configurations
 
-### Run a frontend development environment with all bells and whistles.
+### Secrets
 
-```
-docker compose -f dev-frontend-all.yaml up
-```
+## Getting Started
 
-### Run a frontend development environment with the bare minimum.
+### Use GitHub docker registry images
 
 ```
-docker compose -f dev-frontend.yaml up
+docker compose -f docker-compose.yaml up -d
 ```
 
-### Run the backend from source 
+### Build images from source
 
 ```
-docker compose -f build-backend.yaml up --build
+docker compose -f docker-compose.yaml -f docker-compose.build.yaml up -d
 ```
 
-## Purpose
+### Mount local source code
 
-This repository contains a number of docker compose stacks for local development and integration testing. It comes with two types of stacks: 
+```
+docker compose -f docker-compose.yaml -f docker-compose.mount.yaml up -d
+```
 
-- container stacks - stacks for integration testing only that pull all containers from their primary container registries.
-- build stacks - stacks for integrated development that **depend on local repositories**
+## Cloning Services
 
-All stacks create a caddy reverse proxy on port `8080` and provide a Graphiql frontend on the [`/graphiql/` endpoint](http://localhost:8080/graphiql/) to check the database. Stacks with backend components also expose the RabbitMQ management UI on the [`/rabbitmq/` endpoint](http://localhost:8080/rabbitmq/). This allows to monitor the messaging. The frontend stacks provide access to the [dashboard](http://localhost:8080/dashboard/) as well as to dgraph's DQL UI `ratel` on the [`/ratel/` endpoint](http://localhost:8080/ratel/).
+```
+docker compose run clone-services
+```
 
-### Container Stacks
+## Debugging services
 
-There are four flavours of container stacks
+Explain `.dev` overrides
 
-- `all.yaml` - runs the full system with active directory resolving
-- `noad.yaml` - same as `all.yaml` but *without* active directory resolving
-- `backend.yaml` - runs only the backend services 
-- `frontend.yaml` - runs the frontend and the dgraph data-store
-
-### Build and Development Stacks
-
-The build and develoment stacks depend on the other repositories. These stacks expect the repositories to be fully in place to initiate a `docker build` process.
-
-The following stacks are available: 
-
-- `build-all.yaml` - build and run all containers of the system locally. 
-- `build-backend.yaml` - build and run only the backend containers. 
-- `build-frontend.yaml` - build and run only the frontend containers. 
-- `dev-frontend.yaml` - same as build-frondend, but links the frontend files into a special caddy helper.
-- `dev-frontend-all.yaml` - same as build-all, but links the frontend files into a special caddy helper.
-
-It is mandatory to clone the following repositories into the same parent directory as the repository to which this file belongs. 
-
-| Directory | all | backend | frontend |
-| :--- | :---: | :---: | :---: |
-| [../ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) | ✅ | ✅ | | 
-| [../dgraph-schema](https://github.com/sustainability-zhaw/dgraph-schema) | ✅ | ✅ | ✅ | 
-| [../extraction-dspace](https://github.com/sustainability-zhaw/extraction-dspace) | ✅ | ✅ | | 
-| [../keyword-webhook](https://github.com/sustainability-zhaw/keyword-webhook) | ✅ | ✅ | ✅ | 
-| [../sdg-indexer](https://github.com/sustainability-zhaw/sdg-indexer) | ✅ | ✅ | | 
-| [../sustainability-dashboard](https://github.com/sustainability-zhaw/sustainability-dashboard) | ✅ | | ✅ | 
-
-Note that the `ad-resolver` requires a connection password that is passed through an env-file. For more information, please consult the [ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) repo.
 

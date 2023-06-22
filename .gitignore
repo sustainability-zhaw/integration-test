@@ -1,5 +1,2 @@
-site/assets
-**/.DS_Store
-
-# local environment variables
-contrib/*.env
+secrets/
+services/

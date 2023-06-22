@@ -1,0 +1,10 @@
+{
+    "apiurl": "http://db:8080/graphql",
+    "branch": "main",
+    "target_path": "data/sdgs",
+    "port": 8090,
+    "relax": "no",
+    "mq_host": "mq",
+    "mq_exchange": "zhaw-km",
+    "mq_key": "indexer.update"
+}

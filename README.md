@@ -67,6 +67,8 @@ It is mandatory to clone the following repositories into the same parent directo
 | [../extraction-dspace](https://github.com/sustainability-zhaw/extraction-dspace) | ✅ | ✅ | | 
 | [../extraction-projects](https://github.com/sustainability-zhaw/extraction-projects) | ✅ | ✅ | | 
 | [../keyword-webhook](https://github.com/sustainability-zhaw/keyword-webhook) | ✅ | ✅ | ✅ | 
+| [../resolver-classification](https://github.com/sustainability-zhaw/resolver-classification) | ✅ | ✅ | | 
+| [../resolver-department](https://github.com/sustainability-zhaw/resolver-department) | ✅ | ✅ | | 
 | [../sdg-indexer](https://github.com/sustainability-zhaw/sdg-indexer) | ✅ | ✅ | | 
 | [../sustainability-dashboard](https://github.com/sustainability-zhaw/sustainability-dashboard) | ✅ | | ✅ | 
 

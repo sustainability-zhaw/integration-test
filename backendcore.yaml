@@ -63,6 +63,30 @@ services:
     env_file:
       - ./contrib/extraction_projects_config.env 
 
+  resolver_classification: 
+    image: ghcr.io/sustainability-zhaw/resolver-classification:sha-f53627f
+    restart: "no"
+    networks:
+      - dgraphnet
+    depends_on:
+      db_init:
+        condition: service_completed_successfully 
+    environment:
+      DB_HOST: db:8080
+      LOG_LEVEL: DEBUG
+
+  resolver_department: 
+    image: ghcr.io/sustainability-zhaw/resolver-department:sha-d8ac1da
+    restart: "no"
+    networks:
+      - dgraphnet
+    depends_on:
+      db_init:
+        condition: service_completed_successfully 
+    environment:
+      DB_HOST: db:8080
+      LOG_LEVEL: DEBUG
+
   indexer: 
     image: ghcr.io/sustainability-zhaw/sdg-indexer:sha-5ecb012
     restart: "no"

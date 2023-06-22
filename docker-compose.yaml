@@ -1,0 +1,89 @@
+services:
+  reverse-proxy:
+    image: caddy:2.6.2
+    restart: 'no'
+    configs:
+      - source: reverse-proxy
+        target: /etc/caddy/Caddyfile
+    ports:
+      - 8080:80
+
+  sustainability-dashboard:
+    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:main
+    restart: 'no'
+    configs:
+      - source: sustainability-dashboard
+        target: /usr/share/caddy/config.json
+    volumes: 
+      - ../sustainability-dashboard/site:/usr/share/caddy
+
+  database:
+    image: dgraph/standalone:v23.0.0
+    restart: 'no'
+
+  message-queue:
+    hostname: mq
+    image: rabbitmq:3.11-management
+    restart: 'no'
+
+  download-gateway: 
+    image: ghcr.io/sustainability-zhaw/download-gateway:main
+    restart: 'no'
+    configs:
+    - source: download-gateway
+      target: /etc/app/config.yaml
+
+  graphql-explorer:
+    image: caddy:2.6.2
+    restart: 'no'
+    volumes:
+      - ./graphql-explorer:/usr/share/caddy
+    depends_on:
+      init-database:
+        condition: service_completed_successfully 
+
+  keyword-webhook:
+    image: ghcr.io/sustainability-zhaw/keyword-webhook:main
+    restart: 'no'
+    configs:
+      - source: keyword-webhook
+        target: /etc/app/config.json
+    depends_on:
+      init-database:
+        condition: service_completed_successfully 
+      message-queue:
+        condition: service_started 
+
+  extraction-dspace: 
+    image: ghcr.io/sustainability-zhaw/extraction-dspace:main
+    restart: "no"
+    configs:
+      - source: extraction-dspace
+        target: /etc/app/config.json
+    depends_on:
+      init-database:
+        condition: service_completed_successfully 
+      message-queue:
+        condition: service_started
+
+  init-database:
+    image: ghcr.io/sustainability-zhaw/dgraph-schema:main
+    restart: 'no'
+    environment:
+      TIMEOUT: 20
+      DGRAPH_SERVER: http://database:8080
+    depends_on:
+      database:
+        condition: service_started
+
+configs:
+  reverse-proxy:
+    file: ./configs/reverse-proxy/Caddyfile
+  sustainability-dashboard:
+    file: ./configs/sustainability-dashboard/config.json
+  download-gateway:
+    file: ./configs/download-gateway/config.yaml
+  keyword-webhook:
+    file: ./configs/keyword-webhook/config.json
+  extraction-dspace:
+    file: ./configs/extraction-dspace/config.json

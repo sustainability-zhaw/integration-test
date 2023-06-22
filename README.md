@@ -12,10 +12,10 @@ A set of docker compose configurations to localy test and verify the interplay o
 
 ## Getting Started
 
-### Use GitHub docker registry images
+### Use the latest GitHub docker registry images
 
 ```
-docker compose -f docker-compose.yaml up -d
+docker compose up -d
 ```
 
 ### Build images from source

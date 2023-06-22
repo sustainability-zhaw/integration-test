@@ -21,32 +21,32 @@
     rewrite /stats /stats/query
 
     handle_path /dashboard/download/* {
-        reverse_proxy dlgw:8080
+        reverse_proxy download-gateway:8080
         # reverse_proxy contrib-dlgw-1:8080
     }
 
     handle_path /dashboard/* {
-        reverse_proxy app:80
+        reverse_proxy sustainability-dashboard:80
     }
 
     handle_path /webhook/* {
-        reverse_proxy db_keywords:8090
+        reverse_proxy keyword-webhook:8090
     }
 
     handle_path /api/* {
-        reverse_proxy db:8080
+        reverse_proxy database:8080
     }
 
     handle_path /stats/* {
-        reverse_proxy db:8080
+        reverse_proxy database:8080
     }
 
     handle_path /graphiql/* {
-        reverse_proxy gql_browser:80
+        reverse_proxy graphql-explorer:80
     }
 
     handle_path /rabbitmq/* {
         # Expose rabbitmq management port for development
         reverse_proxy mq:15672
     }
-
+}

@@ -1,2 +1,2 @@
 service:
-  dbhost: db:8080
+  dbhost: database:8080

@@ -12,6 +12,14 @@ A set of docker compose configurations to localy test and verify the interplay o
 
 ## Getting Started
 
+### Initializing Database
+
+This needs to be run once.
+
+```
+docker compose up database-init
+```
+
 ### Use the latest GitHub docker registry images
 
 ```
@@ -21,13 +29,13 @@ docker compose up -d
 ### Build images from source
 
 ```
-docker compose -f docker-compose.yaml -f docker-compose.build.yaml up -d
+docker compose -f docker-compose.build.yaml up -d
 ```
 
-### Mount local source code
+### Build images and mount local source code
 
 ```
-docker compose -f docker-compose.yaml -f docker-compose.mount.yaml up -d
+docker compose -f docker-compose.mount.yaml up -d
 ```
 
 ## Cloning Services
@@ -39,5 +47,11 @@ docker compose run clone-services
 ## Debugging services
 
 Explain `.dev` overrides
+
+
+# TODO:
+
+- [ ] Create health check for database
+- [ ] Wait healthy database
 
 

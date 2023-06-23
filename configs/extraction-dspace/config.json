@@ -1,7 +1,7 @@
 {
     "db_host": "http://database:8080",
     "target_host": "https://digitalcollection.zhaw.ch",
-    "pubdb_update_interval": 3600,
-    "OAI_REQUEST_INTERVAL": 10,
+    "pubdb_update_interval": 86400,
+    "OAI_REQUEST_INTERVAL": 30,
     "LIMIT_BATCH": 10
 }

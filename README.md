@@ -12,7 +12,7 @@ Non sensitive configuration is read from  the `configs` directory. Defaults for 
 
 Sensitive configuration like keys and credentials are read from the `secrets` directory. The `secrets-exmple` directory can be copied and renamed to `secrets`. 
 
-You will need to provide your own keys and credentials. Look at the GitHub Repository of the individual services for more information.
+You will need to provide your own keys and credentials. Look at the GitHub repository of the individual services for more information.
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ You will need to provide your own keys and credentials. Look at the GitHub Repos
 Run this once before starting the system to install the schema and load required data.
 
 ```
-docker compose up database-init
+docker compose run --rm -d init-database
 ```
 
 ### Starting the system
@@ -49,10 +49,8 @@ docker compose -f docker-compose-mount.yaml up -d
 ### Shutting down the system
 
 ```
-docker compose down --remove-orphans
+docker compose down
 ```
-
-`--remove-orphans` will make sure to also remove the `init-database` container.
 
 ## Cloning Services
 

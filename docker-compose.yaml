@@ -43,11 +43,11 @@ services:
     - source: download-gateway-config
       target: /etc/app/config.yaml
 
-  graphql-explorer:
+  graphiql:
     image: caddy:2.6.2
     restart: 'no'
     volumes:
-      - ./graphql-explorer:/usr/share/caddy
+      - ./graphiql:/usr/share/caddy
     depends_on:
       database:
         condition: service_healthy

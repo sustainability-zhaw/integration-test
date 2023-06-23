@@ -42,7 +42,7 @@
     }
 
     handle_path /graphiql/* {
-        reverse_proxy graphql-explorer:80
+        reverse_proxy graphiql:80
     }
 
     handle_path /rabbitmq/* {

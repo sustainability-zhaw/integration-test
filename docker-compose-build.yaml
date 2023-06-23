@@ -171,6 +171,8 @@ configs:
     file: ./configs/download-gateway/config.yaml
   keyword-webhook-config:
     file: ./configs/keyword-webhook/config.json
+  sdg-indexer-config:
+    file: ./configs/sdg-indexer/config.json
   extraction-dspace-config:
     file: ./configs/extraction-dspace/config.json
   extraction-projects-secrets:

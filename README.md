@@ -21,7 +21,7 @@ You will need to provide your own keys and credentials. Look at the GitHub repos
 Run this once before starting the system to install the schema and load required data.
 
 ```
-docker compose run --rm -d init-database
+docker compose run --rm init-database
 ```
 
 ### Starting the system

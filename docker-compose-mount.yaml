@@ -1,0 +1,166 @@
+services:
+  reverse-proxy:
+    image: caddy:2.6.2
+    restart: 'no'
+    configs:
+      - source: reverse-proxy-config
+        target: /etc/caddy/Caddyfile
+    ports:
+      - 8080:80
+
+  sustainability-dashboard:
+    build:
+      dockerfile: ./services/sustainability-dashboard/local.Dockerfile
+    restart: 'no'
+    configs:
+      - source: sustainability-dashboard-config
+        target: /usr/share/caddy/config.json
+    volumes: 
+      - ../sustainability-dashboard/site:/usr/share/caddy
+
+  database:
+    image: dgraph/standalone:v23.0.0
+    restart: 'no'
+    healthcheck:
+      test: curl -IL localhost:6080/state
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  message-queue:
+    hostname: mq
+    image: rabbitmq:3.11-management
+    restart: 'no'
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  download-gateway:
+    build: ./services/download-gateway
+    restart: 'no'
+    configs:
+    - source: download-gateway-config
+      target: /etc/app/config.yaml
+
+  graphiql:
+    image: caddy:2.6.2
+    restart: 'no'
+    volumes:
+      - ./graphiql:/usr/share/caddy
+    depends_on:
+      database:
+        condition: service_healthy
+
+  keyword-webhook:
+    build: ./services/keyword-webhook
+    restart: 'no'
+    configs:
+      - source: keyword-webhook-config
+        target: /etc/app/config.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy 
+
+  extraction-dspace: 
+    build: ./services/extraction-dspace
+    restart: "no"
+    configs:
+      - source: extraction-dspace-config
+        target: /etc/app/config.json
+    volumes:
+      - ./services/extraction-dspace/src:/app
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  extraction-projects: 
+    build: ./services/extraction-projects
+    restart: "no"
+    env_file:
+      - ./configs/extraction-projects/.env.config
+    configs:
+      - source: extraction-projects-secrets
+        target: /etc/app/secrets.json
+    volumes:
+      - ./services/extraction-projects/src:/app
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  ad-resolver: 
+    build: ./services/ad-resolver
+    restart: "no"
+    env_file:
+      - ./configs/ad-resolver/.env.config
+    configs:
+      - source: ad-resolver-secrets
+        target: /etc/app/secrets.json
+    volumes:
+      - ./services/ad-resolver/src:/app
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  resolver-classification: 
+    build: ./services/resolver-classification
+    restart: "no"
+    env_file:
+      - ./configs/resolver-classification/.env.config
+    volumes:
+      - ./services/resolver-classification/src:/app
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  resolver-department: 
+    build: ./services/resolver-department
+    restart: "no"
+    env_file:
+      - ./configs/resolver-department/.env.config
+    volumes:
+      - ./services/resolver-department/src:/app
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  init-database:
+    build: ./services/dgraph-schema
+    profiles:
+      - bootstrap
+    restart: 'no'
+    command: entrypoint.sh
+    environment:
+      DGRAPH_SERVER: http://database:8080
+    depends_on:
+      database:
+        condition: service_healthy
+
+configs:
+  reverse-proxy-config:
+    file: ./configs/reverse-proxy/Caddyfile
+  sustainability-dashboard-config:
+    file: ./configs/sustainability-dashboard/config.json
+  download-gateway-config:
+    file: ./configs/download-gateway/config.yaml
+  keyword-webhook-config:
+    file: ./configs/keyword-webhook/config.json
+  extraction-dspace-config:
+    file: ./configs/extraction-dspace/config.json
+  extraction-projects-secrets:
+    file: ./secrets/extraction-projects/secrets.json
+  ad-resolver-secrets:
+    file: ./secrets/ad-resolver/secrets.json

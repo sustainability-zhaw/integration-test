@@ -12,7 +12,7 @@ Non sensitive configuration is read from  the `configs` directory. Defaults for 
 
 Sensitive configuration like keys and credentials are read from the `secrets` directory. The `secrets-exmple` directory can be copied and renamed to `secrets`. 
 
-You will need to provide your own keys and credentials. Look at the GitHub Repository of the individual services for more specific information.
+You will need to provide your own keys and credentials. Look at the GitHub Repository of the individual services for more information.
 
 ## Getting Started
 
@@ -37,13 +37,13 @@ docker compose up -d
 #### Build images from source
 
 ```
-docker compose -f docker-compose.build.yaml up -d
+docker compose -f docker-compose-build.yaml up -d
 ```
 
 #### Build images from source and mount local source code
 
 ```
-docker compose -f docker-compose.mount.yaml up -d
+docker compose -f docker-compose-mount.yaml up -d
 ```
 
 ### Shutting down the system

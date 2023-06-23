@@ -31,6 +31,11 @@ services:
     hostname: mq
     image: rabbitmq:3.11-management
     restart: 'no'
+    configs:
+      - source: message-queue-config
+        target: /etc/rabbitmq/conf.d/rabbitmq.conf
+      - source: message-queue-definitions
+        target: /etc/rabbitmq/definitions.json
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 10s
@@ -145,6 +150,8 @@ services:
     command: entrypoint.sh
     environment:
       DGRAPH_SERVER: http://database:8080
+    volumes:
+      - ./init-database/entrypoint.sh:/data/entrypoint.sh
     depends_on:
       database:
         condition: service_healthy
@@ -154,6 +161,10 @@ configs:
     file: ./configs/reverse-proxy/Caddyfile
   sustainability-dashboard-config:
     file: ./configs/sustainability-dashboard/config.json
+  message-queue-config:
+    file: ./configs/message-queue/rabbitmq.conf
+  message-queue-definitions:
+    file: ./configs/message-queue/definitions.json
   download-gateway-config:
     file: ./configs/download-gateway/config.yaml
   keyword-webhook-config:

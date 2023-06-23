@@ -146,12 +146,12 @@ services:
 configs:
   reverse-proxy-config:
     file: ./configs/reverse-proxy/Caddyfile
+  sustainability-dashboard-config:
+    file: ./configs/sustainability-dashboard/config.json
   message-queue-config:
     file: ./configs/message-queue/rabbitmq.conf
   message-queue-definitions:
     file: ./configs/message-queue/definitions.json
-  sustainability-dashboard-config:
-    file: ./configs/sustainability-dashboard/config.json
   download-gateway-config:
     file: ./configs/download-gateway/config.yaml
   keyword-webhook-config:

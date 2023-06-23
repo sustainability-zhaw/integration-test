@@ -65,7 +65,19 @@ services:
       database:
         condition: service_healthy
       message-queue:
-        condition: service_healthy 
+        condition: service_healthy
+
+  sdg-indexer: 
+    image: ghcr.io/sustainability-zhaw/sdg-indexer:main
+    restart: "no"
+    configs:
+      - source: sdg-indexer-config
+        target: /etc/app/config.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
 
   extraction-dspace: 
     image: ghcr.io/sustainability-zhaw/extraction-dspace:main
@@ -156,6 +168,8 @@ configs:
     file: ./configs/download-gateway/config.yaml
   keyword-webhook-config:
     file: ./configs/keyword-webhook/config.json
+  sdg-indexer-config:
+    file: ./configs/sdg-indexer/config.json
   extraction-dspace-config:
     file: ./configs/extraction-dspace/config.json
   extraction-projects-secrets:

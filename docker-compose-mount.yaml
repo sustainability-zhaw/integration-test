@@ -70,6 +70,20 @@ services:
       message-queue:
         condition: service_healthy 
 
+  sdg-indexer: 
+    build: ./services/sdg-indexer
+    restart: "no"
+    configs:
+      - source: sdg-indexer-config
+        target: /etc/app/config.json
+    volumes:
+      - ./services/sdg-indexer/src:/app
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
   extraction-dspace: 
     build: ./services/extraction-dspace
     restart: "no"

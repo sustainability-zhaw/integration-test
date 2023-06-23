@@ -1,0 +1,5 @@
+{
+    "BATCH_INTERVAL": 20,
+    "DB_HOST": "database:8080",
+    "LOG_LEVEL": "DEBUG"
+}

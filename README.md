@@ -14,25 +14,27 @@ A set of docker compose configurations to localy test and verify the interplay o
 
 ### Initializing Database
 
-This needs to be run once.
+This needs to be run once before starting the system.
 
 ```
 docker compose up database-init
 ```
 
-### Use the latest GitHub docker registry images
+### Starting the system
+
+#### Use the latest GitHub docker registry images
 
 ```
 docker compose up -d
 ```
 
-### Build images from source
+#### Build images from source
 
 ```
 docker compose -f docker-compose.build.yaml up -d
 ```
 
-### Build images and mount local source code
+#### Build images and mount local source code
 
 ```
 docker compose -f docker-compose.mount.yaml up -d

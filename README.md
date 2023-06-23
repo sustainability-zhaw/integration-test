@@ -47,11 +47,3 @@ docker compose run clone-services
 ## Debugging services
 
 Explain `.dev` overrides
-
-
-# TODO:
-
-- [ ] Create health check for database
-- [ ] Wait healthy database
-
-

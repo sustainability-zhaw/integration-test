@@ -2,11 +2,9 @@
 
 A set of docker compose configurations to localy test and verify the interplay of all services.
 
-## Requirements
+## Configurations
 
-## Overview
-
-### Configurations
+### Configs
 
 Non sensitive configuration is read from  the `configs` directory. Defaults for testing are already provided.
 
@@ -20,7 +18,7 @@ You will need to provide your own keys and credentials. Look at the GitHub Repos
 
 ### Initializing Database
 
-Run this once before starting the system to install the schema and load some required data.
+Run this once before starting the system to install the schema and load required data.
 
 ```
 docker compose up database-init

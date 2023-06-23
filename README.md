@@ -8,13 +8,19 @@ A set of docker compose configurations to localy test and verify the interplay o
 
 ### Configurations
 
+Non sensitive configuration is read from  the `configs` directory. Defaults for testing are already provided.
+
 ### Secrets
+
+Sensitive configuration like keys and credentials are read from the `secrets` directory. The `secrets-exmple` directory can be copied and renamed to `secrets`. 
+
+You will need to provide your own keys and credentials. Look at the GitHub Repository of the individual services for more specific information.
 
 ## Getting Started
 
 ### Initializing Database
 
-This needs to be run once before starting the system.
+Run this once before starting the system to install the schema and load some required data.
 
 ```
 docker compose up database-init
@@ -22,7 +28,9 @@ docker compose up database-init
 
 ### Starting the system
 
-#### Use the latest GitHub docker registry images
+There are three docker compose setups provided.
+
+#### Use the latest docker images from GitHub
 
 ```
 docker compose up -d
@@ -34,11 +42,19 @@ docker compose up -d
 docker compose -f docker-compose.build.yaml up -d
 ```
 
-#### Build images and mount local source code
+#### Build images from source and mount local source code
 
 ```
 docker compose -f docker-compose.mount.yaml up -d
 ```
+
+### Shutting down the system
+
+```
+docker compose down --remove-orphans
+```
+
+`--remove-orphans` will make sure to also remove the `init-database` container.
 
 ## Cloning Services
 

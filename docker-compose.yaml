@@ -146,7 +146,6 @@ services:
     profiles:
       - bootstrap
     restart: 'no'
-    command: entrypoint.sh
     environment:
       DGRAPH_SERVER: http://database:8080
     volumes:

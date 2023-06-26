@@ -10,7 +10,8 @@ services:
 
   sustainability-dashboard:
     build:
-      dockerfile: ./services/sustainability-dashboard/local.Dockerfile
+      context: ./services/sustainability-dashboard
+      dockerfile: local.Dockerfile
     restart: 'no'
     configs:
       - source: sustainability-dashboard-config
@@ -161,7 +162,6 @@ services:
     profiles:
       - bootstrap
     restart: 'no'
-    command: entrypoint.sh
     environment:
       DGRAPH_SERVER: http://database:8080
     volumes:

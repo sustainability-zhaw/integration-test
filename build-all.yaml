@@ -26,7 +26,7 @@ services:
       - dgraphnet
 
   mq: 
-    image: rabbitmq:3.11-management
+    image: rabbitmq:3.12-management
     restart: 'no'
     networks:
       - dgraphnet

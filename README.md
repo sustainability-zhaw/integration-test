@@ -58,6 +58,6 @@ docker compose down
 docker compose run clone-services
 ```
 
-## Debugging services
+## Overrides
 
-Explain `.dev` overrides
+Explain overrides

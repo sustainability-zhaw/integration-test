@@ -10,6 +10,11 @@ services:
     restart: 'no'
     networks:
       - dgraphnet
+    configs:
+      - source: mq-config
+        target: /etc/rabbitmq/conf.d/rabbitmq.conf
+      - source: mq-definitions
+        target: /etc/rabbitmq/definitions.json
 
   db_init:
     build:
@@ -155,4 +160,8 @@ configs:
     file: ./contrib/digital_collection.json
   kwconfig:
     file: ./contrib/kwconfig.json
+  mq-config:
+    file: ./contrib/rabbitmq.conf
+  mq-definitions:
+    file: ./contrib/definitions.json
 

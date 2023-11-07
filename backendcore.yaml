@@ -7,6 +7,11 @@ services:
     restart: 'no'
     networks:
       - dgraphnet
+    configs:
+      - source: mq-config
+        target: /etc/rabbitmq/conf.d/rabbitmq.conf
+      - source: mq-definitions
+        target: /etc/rabbitmq/definitions.json
 
   db_init:
     image: ghcr.io/sustainability-zhaw/dgraph-schema:sha-a719f16
@@ -99,4 +104,10 @@ services:
       BATCH_INTERVAL: 20
       DB_HOST: db:8080
       LOG_LEVEL: DEBUG
+
+configs:
+  mq-config:
+    file: ./contrib/rabbitmq.conf
+  mq-definitions:
+    file: ./contrib/definitions.json
 

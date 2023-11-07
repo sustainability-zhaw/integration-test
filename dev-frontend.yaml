@@ -80,4 +80,3 @@ configs:
     file: ./contrib/dashboard_config.json
   kwconfig:
     file: ./contrib/kwconfig.json
-

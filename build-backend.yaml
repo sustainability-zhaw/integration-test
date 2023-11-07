@@ -75,6 +75,32 @@ services:
   #   env_file:
   #     - ./contrib/extraction_projects_config.env 
 
+  # resolver_classification: 
+  #   build:
+  #     context: ../resolver-classification/
+  #   restart: "no"
+  #   networks:
+  #     - dgraphnet
+  #   depends_on:
+  #     db_init:
+  #       condition: service_completed_successfully 
+  #   environment:
+  #     DB_HOST: db:8080
+  #     LOG_LEVEL: DEBUG
+
+  # resolver_department: 
+  #   build:
+  #     context: ../resolver-department/
+  #   restart: "no"
+  #   networks:
+  #     - dgraphnet
+  #   depends_on:
+  #     db_init:
+  #       condition: service_completed_successfully 
+  #   environment:
+  #     DB_HOST: db:8080
+  #     LOG_LEVEL: DEBUG
+
   indexer: 
     build:
       context: ../sdg-indexer/  

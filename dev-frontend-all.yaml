@@ -80,7 +80,7 @@ services:
 
   indexer: 
     build:
-      context: ../../sdg-indexer/  
+      context: ../sdg-indexer/  
     
     restart: "no"
     networks:

@@ -49,4 +49,4 @@
         # Expose rabbitmq management port for development
         reverse_proxy mq:15672
     }
-
+}

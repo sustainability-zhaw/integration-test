@@ -26,6 +26,12 @@
             "tags":""
         },
         {
+            "name":"keyword-webhook",
+            "password_hash":"fd0GyzAf6C6hmgCJ5VU+TSyzUNlzypPlGb7VDKkqUvJqVxyd",
+            "hashing_algorithm":"rabbit_password_hashing_sha256",
+            "tags":""
+        },
+        {
             "name":"resolver-classification",
             "password_hash":"fd0GyzAf6C6hmgCJ5VU+TSyzUNlzypPlGb7VDKkqUvJqVxyd",
             "hashing_algorithm":"rabbit_password_hashing_sha256",
@@ -73,6 +79,13 @@
         },
         {
             "user":"extraction-projects",
+            "vhost":"/",
+            "configure":".*",
+            "write":".*",
+            "read":".*"
+        },
+        {
+            "user":"keyword-webhook",
             "vhost":"/",
             "configure":".*",
             "write":".*",

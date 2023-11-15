@@ -9,15 +9,13 @@ services:
       - 8080:80
 
   sustainability-dashboard:
-    build:
-      context: ./services/sustainability-dashboard
-      dockerfile: local.Dockerfile
+    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:main
     restart: 'no'
     configs:
       - source: sustainability-dashboard-config
         target: /usr/share/caddy/config.json
     volumes: 
-      - ./services/sustainability-dashboard/build:/usr/share/caddy
+      - ./services/sustainability-dashboard/site:/usr/share/caddy
 
   database:
     image: dgraph/standalone:v23.0.0

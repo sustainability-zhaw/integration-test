@@ -17,7 +17,7 @@ services:
       - source: sustainability-dashboard-config
         target: /usr/share/caddy/config.json
     volumes: 
-      - ../sustainability-dashboard/site:/usr/share/caddy
+      - ./services/sustainability-dashboard/build:/usr/share/caddy
 
   database:
     image: dgraph/standalone:v23.0.0

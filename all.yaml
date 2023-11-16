@@ -174,7 +174,7 @@ configs:
   dgconfig:
     file: ./contrib/dlgw.yaml
   mq-config:
-    file: ./contrib/rabbitmq.conf
+    file: ./contrib/mq/rabbitmq.conf
   mq-definitions:
-    file: ./contrib/definitions.json
+    file: ./contrib/mq/definitions.json
 

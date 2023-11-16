@@ -1,3 +1,5 @@
 secrets/
 services/
 .vscode/
+contrib/
+**/.DS_Store

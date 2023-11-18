@@ -30,9 +30,11 @@ services:
     restart: 'no'
     configs:
       - source: message-queue-config
-        target: /etc/rabbitmq/conf.d/rabbitmq.conf
+        target: /etc/rabbitmq/conf.d/00-defaults.conf
       - source: message-queue-definitions
-        target: /etc/rabbitmq/definitions.json
+        target: /etc/rabbitmq/definitions.d/00-defaults.json
+      - source: message-queue-definitions-users
+        target: /etc/rabbitmq/definitions.d/01-users.json
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 10s
@@ -155,13 +157,15 @@ services:
         condition: service_healthy
 
 configs:
-## First the public configs
+# Public configuration
   reverse-proxy-config:
     file: ./configs/reverse-proxy/Caddyfile
   sustainability-dashboard-config:
     file: ./configs/sustainability-dashboard/config.json
   message-queue-config:
     file: ./configs/message-queue/rabbitmq.conf
+  message-queue-definitions:
+    file: ./configs/message-queue/definitions.json
   download-gateway-config:
     file: ./configs/download-gateway/config.yaml
   keyword-webhook-config:
@@ -171,9 +175,9 @@ configs:
   extraction-dspace-config:
     file: ./configs/extraction-dspace/config.json
 
-## NOTE: Secrets follow, dont commit
-  message-queue-definitions:
-    file: ./secrets/message-queue/definitions.json
+# Secrets
+  message-queue-definitions-users:
+    file: ./secrets/message-queue/definitions-users.json
   extraction-projects-secrets:
     file: ./secrets/extraction-projects/secrets.json
   ad-resolver-secrets:

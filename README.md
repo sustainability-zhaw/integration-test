@@ -60,4 +60,16 @@ docker compose run clone-services
 
 ## Overrides
 
-Explain overrides
+TODO Explain overrides
+
+### Using overrides for frontend development
+
+The frontend development does not require building of most of the backend services and is basically focused around the static files served by the dashboard container. 
+
+The following command launches the default system and sideloads the local dashboard code. This override allows to edit the source code without building and restarting all containers. 
+
+```
+docker compose -f docker-compose.yaml -f overrides/docker-compose-dashboard-code.yaml up -d
+```
+
+This assumes that the dashboard repo is in a sibling directory next to the integration tests. 

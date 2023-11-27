@@ -102,9 +102,9 @@ services:
   extraction-projects: 
     build: ./services/extraction-projects
     restart: "no"
-    env_file:
-      - ./configs/extraction-projects/.env.config
     configs:
+      - source: extraction-projects-config
+        target: /etc/app/config.json
       - source: extraction-projects-secrets
         target: /etc/app/secrets.json
     volumes:
@@ -118,9 +118,9 @@ services:
   ad-resolver: 
     build: ./services/ad-resolver
     restart: "no"
-    env_file:
-      - ./configs/ad-resolver/.env.config
     configs:
+      - source: ad-resolver-config
+        target: /etc/app/config.json
       - source: ad-resolver-secrets
         target: /etc/app/secrets.json
     volumes:
@@ -134,8 +134,9 @@ services:
   resolver-classification: 
     build: ./services/resolver-classification
     restart: "no"
-    env_file:
-      - ./configs/resolver-classification/.env.config
+    configs:
+      - source: resolver-classification-config
+        target: /etc/app/config.json
     volumes:
       - ./services/resolver-classification/src:/app
     depends_on:
@@ -147,8 +148,9 @@ services:
   resolver-department: 
     build: ./services/resolver-department
     restart: "no"
-    env_file:
-      - ./configs/resolver-department/.env.config
+    configs:
+      - source: resolver-department-config
+        target: /etc/app/config.json
     volumes:
       - ./services/resolver-department/src:/app
     depends_on:
@@ -188,6 +190,14 @@ configs:
     file: ./configs/sdg-indexer/config.json
   extraction-dspace-config:
     file: ./configs/extraction-dspace/config.json
+  ad-resolver-config:
+    file: ./configs/ad-resolver/config.json
+  extraction-projects-config:
+    file: ./configs/extraction-projects/config.json
+  resolver-classification-config:
+    file: ./configs/resolver-classification/config.json
+  resolver-department-config:
+    file: ./configs/resolver-department/config.json
 
 # Secrets
   message-queue-definitions-users:

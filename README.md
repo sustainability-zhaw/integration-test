@@ -57,7 +57,7 @@ docker compose -f compose.yaml -f compose.build.yaml -f compose.mount.yaml --pro
 ### Shutting down the system
 
 ```
-docker compose down
+docker compose --profile full down
 ```
 
 ## Profiles

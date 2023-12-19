@@ -1,5 +1,5 @@
 {
-    "apiurl": "http://db:8080/graphql",
+    "apiurl": "http://database:8080/graphql",
     "branch": "main",
     "target_path": "data/sdgs",
     "port": 8090,

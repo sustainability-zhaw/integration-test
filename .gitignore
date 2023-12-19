@@ -1,5 +1,5 @@
-site/assets
+secrets/
+services/
+.vscode/
+contrib/
 **/.DS_Store
-
-# local environment variables
-contrib/*.env

@@ -1,0 +1,7 @@
+{
+    "DB_HOST": "database:8080",
+    "IMPORT_INTERVAL": 86400,
+    "BATCH_INTERVAL": 300,
+    "BATCH_SIZE": 100,
+    "LOG_LEVEL": "DEBUG"
+}

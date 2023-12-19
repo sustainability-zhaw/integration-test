@@ -1,78 +1,75 @@
-# Integration-Test
+# Integration Test
 
-A set of environments to test the interplay of the different components of the SDG Dashboard
+A set of docker compose configurations to localy test and verify the interplay of all services.
 
-## Getting started
+## Configurations
 
-### Run the latest containers to have a look. 
+### Configs
 
-```
-docker compose -f all.yaml up
-```
+Non sensitive configuration is read from  the `configs` directory. Defaults for testing are already provided.
 
-### Run a frontend development environment with all bells and whistles.
+### Secrets
 
-```
-docker compose -f dev-frontend-all.yaml up
-```
+Sensitive configuration like keys and credentials are read from the `secrets` directory. The `secrets-exmple` directory can be copied and renamed to `secrets`. 
 
-### Run a frontend development environment with the bare minimum.
+You will need to provide your own keys and credentials. Look at the GitHub repository of the individual services for more information.
 
-```
-docker compose -f dev-frontend.yaml up
-```
+## Getting Started
 
-### Run the backend from source 
+### Initializing Database
+
+Run this once before starting the system to install the schema and load required data.
 
 ```
-docker compose -f build-backend.yaml up --build
+docker compose run --rm init-database
 ```
 
-## Purpose
+### Starting the system
 
-This repository contains a number of docker compose stacks for local development and integration testing. It comes with two types of stacks: 
+There are three docker compose setups provided.
 
-- container stacks - stacks for integration testing only that pull all containers from their primary container registries.
-- build stacks - stacks for integrated development that **depend on local repositories**
+#### Use the latest docker images from GitHub
 
-All stacks create a caddy reverse proxy on port `8080` and provide a Graphiql frontend on the [`/graphiql/` endpoint](http://localhost:8080/graphiql/) to check the database. Stacks with backend components also expose the RabbitMQ management UI on the [`/rabbitmq/` endpoint](http://localhost:8080/rabbitmq/). This allows to monitor the messaging. The frontend stacks provide access to the [dashboard](http://localhost:8080/dashboard/) as well as to dgraph's DQL UI `ratel` on the [`/ratel/` endpoint](http://localhost:8080/ratel/).
+```
+docker compose up -d
+```
 
-### Container Stacks
+#### Build images from source
 
-There are four flavours of container stacks
+```
+docker compose -f docker-compose-build.yaml up -d
+```
 
-- `all.yaml` - runs the full system with active directory resolving
-- `noad.yaml` - same as `all.yaml` but *without* active directory resolving
-- `backend.yaml` - runs only the backend services 
-- `frontend.yaml` - runs the frontend and the dgraph data-store
+#### Build images from source and mount local source code
 
-### Build and Development Stacks
+```
+docker compose -f docker-compose-mount.yaml up -d
+```
 
-The build and develoment stacks depend on the other repositories. These stacks expect the repositories to be fully in place to initiate a `docker build` process.
+### Shutting down the system
 
-The following stacks are available: 
+```
+docker compose down
+```
 
-- `build-all.yaml` - build and run all containers of the system locally. 
-- `build-backend.yaml` - build and run only the backend containers. 
-- `build-frontend.yaml` - build and run only the frontend containers. 
-- `dev-frontend.yaml` - same as build-frondend, but links the frontend files into a special caddy helper.
-- `dev-frontend-all.yaml` - same as build-all, but links the frontend files into a special caddy helper.
+## Cloning Services (Not implemented yet)
 
-It is mandatory to clone the following repositories into the same parent directory as the repository to which this file belongs. 
+```
+docker compose run clone-services
+```
 
-| Directory | all | backend | frontend |
-| :--- | :---: | :---: | :---: |
-| [../ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) | ✅ | ✅ | | 
-| [../dgraph-schema](https://github.com/sustainability-zhaw/dgraph-schema) | ✅ | ✅ | ✅ | 
-| [../extraction-dspace](https://github.com/sustainability-zhaw/extraction-dspace) | ✅ | ✅ | | 
-| [../extraction-projects](https://github.com/sustainability-zhaw/extraction-projects) | ✅ | ✅ | | 
-| [../keyword-webhook](https://github.com/sustainability-zhaw/keyword-webhook) | ✅ | ✅ | ✅ | 
-| [../resolver-classification](https://github.com/sustainability-zhaw/resolver-classification) | ✅ | ✅ | | 
-| [../resolver-department](https://github.com/sustainability-zhaw/resolver-department) | ✅ | ✅ | | 
-| [../sdg-indexer](https://github.com/sustainability-zhaw/sdg-indexer) | ✅ | ✅ | | 
-| [../sustainability-dashboard](https://github.com/sustainability-zhaw/sustainability-dashboard) | ✅ | | ✅ | 
+## Overrides
 
-Note that the `ad-resolver` requires a connection password that is passed through an env-file. For more information, please consult the [ad-resolver](https://github.com/sustainability-zhaw/ad-resolver) repo.
+TODO Explain overrides
 
-Note that the `extraction-projects` requires an API key that is passed through an env-file. For more information, please consult the [extraction-projects](https://github.com/sustainability-zhaw/extraction-projects) repo.
+### Using overrides for frontend development
 
+The frontend development does not require building of most of the backend services and is basically focused around the static files served by the dashboard container. 
+
+The following command launches the default system and sideloads the local dashboard code. This override allows to edit the source code without building and restarting all containers. 
+
+```
+docker compose -f docker-compose.yaml -f overrides/docker-compose-dashboard-code.yaml up -d
+```
+
+This assumes that the dashboard repo is in a sibling directory next to the integration tests. 

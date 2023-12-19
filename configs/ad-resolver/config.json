@@ -1,0 +1,5 @@
+{
+    "DB_HOST": "database:8080",
+    "AD_HOST": "zhaw.ch",
+    "LOG_LEVEL": "DEBUG"
+}

@@ -1,0 +1,194 @@
+services:
+  reverse-proxy:
+    image: caddy:2.6.2
+    restart: 'no'
+    configs:
+      - source: reverse-proxy-config
+        target: /etc/caddy/Caddyfile
+    ports:
+      - 8080:80
+
+  sustainability-dashboard:
+    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:main
+    restart: 'no'
+    configs:
+      - source: sustainability-dashboard-config
+        target: /usr/share/caddy/config.json
+
+  database:
+    image: dgraph/standalone:v23.0.0
+    restart: 'no'
+    healthcheck:
+      test: curl -IL localhost:6080/state
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  message-queue:
+    hostname: mq
+    image: rabbitmq:3.11-management
+    restart: 'no'
+    configs:
+      - source: message-queue-config
+        target: /etc/rabbitmq/conf.d/00-defaults.conf
+      - source: message-queue-definitions
+        target: /etc/rabbitmq/definitions.d/00-defaults.json
+      - source: message-queue-definitions-users
+        target: /etc/rabbitmq/definitions.d/01-users.json
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  download-gateway: 
+    image: ghcr.io/sustainability-zhaw/download-gateway:main
+    restart: 'no'
+    configs:
+    - source: download-gateway-config
+      target: /etc/app/config.yaml
+
+  graphiql:
+    image: caddy:2.6.2
+    restart: 'no'
+    volumes:
+      - ./graphiql:/usr/share/caddy
+    depends_on:
+      database:
+        condition: service_healthy
+
+  keyword-webhook:
+    image: ghcr.io/sustainability-zhaw/keyword-webhook:main
+    restart: 'no'
+    configs:
+      - source: keyword-webhook-config
+        target: /etc/app/config.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  sdg-indexer: 
+    image: ghcr.io/sustainability-zhaw/sdg-indexer:main
+    restart: "no"
+    configs:
+      - source: sdg-indexer-config
+        target: /etc/app/config.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  extraction-dspace: 
+    image: ghcr.io/sustainability-zhaw/extraction-dspace:main
+    restart: "no"
+    configs:
+      - source: extraction-dspace-config
+        target: /etc/app/config.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  extraction-projects: 
+    image: ghcr.io/sustainability-zhaw/extraction-projects:main
+    restart: "no"
+    configs:
+      - source: extraction-projects-config
+        target: /etc/app/config.json
+      - source: extraction-projects-secrets
+        target: /etc/app/secrets.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  ad-resolver: 
+    image: ghcr.io/sustainability-zhaw/ad-resolver:main
+    restart: "no"
+    configs:
+      - source: ad-resolver-config
+        target: /etc/app/config.json
+      - source: ad-resolver-secrets
+        target: /etc/app/secrets.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  resolver-classification: 
+    image: ghcr.io/sustainability-zhaw/resolver-classification:main
+    restart: "no"
+    configs:
+      - source: resolver-classification-config
+        target: /etc/app/config.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  resolver-department: 
+    image: ghcr.io/sustainability-zhaw/resolver-department:main
+    restart: "no"
+    configs:
+      - source: resolver-department-config
+        target: /etc/app/config.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
+  init-database:
+    image: ghcr.io/sustainability-zhaw/dgraph-schema:main
+    profiles:
+      - bootstrap
+    restart: 'no'
+    environment:
+      DGRAPH_SERVER: http://database:8080
+    volumes:
+      - ./init-database/entrypoint.sh:/data/entrypoint.sh
+    depends_on:
+      database:
+        condition: service_healthy
+
+configs:
+# Public configuration
+  reverse-proxy-config:
+    file: ./configs/reverse-proxy/Caddyfile
+  sustainability-dashboard-config:
+    file: ./configs/sustainability-dashboard/config.json
+  message-queue-config:
+    file: ./configs/message-queue/rabbitmq.conf
+  message-queue-definitions:
+    file: ./configs/message-queue/definitions.json
+  download-gateway-config:
+    file: ./configs/download-gateway/config.yaml
+  keyword-webhook-config:
+    file: ./configs/keyword-webhook/config.json
+  sdg-indexer-config:
+    file: ./configs/sdg-indexer/config.json
+  extraction-dspace-config:
+    file: ./configs/extraction-dspace/config.json
+  ad-resolver-config:
+    file: ./configs/ad-resolver/config.json
+  extraction-projects-config:
+    file: ./configs/extraction-projects/config.json
+  resolver-classification-config:
+    file: ./configs/resolver-classification/config.json
+  resolver-department-config:
+    file: ./configs/resolver-department/config.json
+
+# Secrets
+  message-queue-definitions-users:
+    file: ./secrets/message-queue/definitions-users.json
+  extraction-projects-secrets:
+    file: ./secrets/extraction-projects/secrets.json
+  ad-resolver-secrets:
+    file: ./secrets/ad-resolver/secrets.json

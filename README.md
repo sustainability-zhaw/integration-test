@@ -65,7 +65,7 @@ docker compose --profile full down
 | |full|frontend|backend|bootstrap|
 |-|----|--------|-------|---------|
 |reverse-proxy|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|database|:white_check_mark:|:white_check_mark:|:white_check_mark:||
+|database|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |graphiql|:white_check_mark:|:white_check_mark:|:white_check_mark:||
 |sustainability-dashboard|:white_check_mark:|:white_check_mark:|||
 |download-gateway|:white_check_mark:|:white_check_mark:|||

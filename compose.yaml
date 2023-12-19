@@ -7,6 +7,7 @@ services:
         target: /etc/caddy/Caddyfile
     ports:
       - 8080:80
+    profiles: ["full", "backend", "frontend"]
 
   sustainability-dashboard:
     image: ghcr.io/sustainability-zhaw/sustainability-dashboard:main
@@ -14,6 +15,7 @@ services:
     configs:
       - source: sustainability-dashboard-config
         target: /usr/share/caddy/config.json
+    profiles: ["full", "frontend"]
 
   database:
     image: dgraph/standalone:v23.1.0
@@ -23,6 +25,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    profiles: ["full", "backend", "frontend"]
 
   message-queue:
     hostname: mq
@@ -40,6 +43,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    profiles: ["full", "backend"]
 
   download-gateway: 
     image: ghcr.io/sustainability-zhaw/download-gateway:main
@@ -47,6 +51,7 @@ services:
     configs:
     - source: download-gateway-config
       target: /etc/app/config.yaml
+    profiles: ["full", "frontend"]
 
   graphiql:
     image: caddy:2.7.6
@@ -56,6 +61,7 @@ services:
     depends_on:
       database:
         condition: service_healthy
+    profiles: ["full", "backend", "frontend"]
 
   keyword-webhook:
     image: ghcr.io/sustainability-zhaw/keyword-webhook:main
@@ -68,6 +74,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   sdg-indexer: 
     image: ghcr.io/sustainability-zhaw/sdg-indexer:main
@@ -80,6 +87,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   extraction-dspace: 
     image: ghcr.io/sustainability-zhaw/extraction-dspace:main
@@ -92,6 +100,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   extraction-projects: 
     image: ghcr.io/sustainability-zhaw/extraction-projects:main
@@ -106,6 +115,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   extraction-evento: 
     image: ghcr.io/sustainability-zhaw/extraction-evento:main
@@ -132,6 +142,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   resolver-classification: 
     image: ghcr.io/sustainability-zhaw/resolver-classification:main
@@ -144,6 +155,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   resolver-department: 
     image: ghcr.io/sustainability-zhaw/resolver-department:main
@@ -156,11 +168,10 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   init-database:
     image: ghcr.io/sustainability-zhaw/dgraph-schema:main
-    profiles:
-      - bootstrap
     restart: 'no'
     environment:
       DGRAPH_SERVER: http://database:8080
@@ -169,6 +180,7 @@ services:
     depends_on:
       database:
         condition: service_healthy
+    profiles: ["boostrap"]
 
 configs:
 # Public configuration

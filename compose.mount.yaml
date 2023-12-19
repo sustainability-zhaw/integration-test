@@ -1,0 +1,28 @@
+services:
+  sustainability-dashboard:
+    volumes: 
+      - ./services/sustainability-dashboard/site:/usr/share/caddy
+
+  sdg-indexer: 
+    volumes:
+      - ./services/sdg-indexer/src:/app
+
+  extraction-dspace:
+    volumes:
+      - ./services/extraction-dspace/src:/app
+
+  extraction-projects:
+    volumes:
+      - ./services/extraction-projects/src:/app
+
+  ad-resolver:
+    volumes:
+      - ./services/ad-resolver/src:/app
+
+  resolver-classification:
+    volumes:
+      - ./services/resolver-classification/src:/app
+
+  resolver-department:
+    volumes:
+      - ./services/resolver-department/src:/app

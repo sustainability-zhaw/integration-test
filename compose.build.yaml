@@ -1,0 +1,29 @@
+services:
+  sustainability-dashboard:
+    build:
+      context: ./services/sustainability-dashboard
+      dockerfile: local.Dockerfile
+
+  download-gateway:
+    build: ./services/download-gateway
+
+  keyword-webhook:
+    build: ./services/keyword-webhook 
+
+  sdg-indexer: 
+    build: ./services/sdg-indexer
+
+  extraction-dspace: 
+    build: ./services/extraction-dspace
+
+  extraction-projects: 
+    build: ./services/extraction-projects
+
+  ad-resolver: 
+    build: ./services/ad-resolver
+
+  resolver-classification: 
+    build: ./services/resolver-classification
+
+  resolver-department: 
+    build: ./services/resolver-department

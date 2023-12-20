@@ -6,8 +6,7 @@ services:
       - source: reverse-proxy-config
         target: /etc/caddy/Caddyfile
     ports:
-      - 80:80
-      - 443:443
+      - 8080:80
     profiles: ["full", "backend", "frontend"]
 
   sustainability-dashboard:

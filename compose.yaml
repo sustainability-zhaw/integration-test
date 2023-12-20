@@ -6,7 +6,8 @@ services:
       - source: reverse-proxy-config
         target: /etc/caddy/Caddyfile
     ports:
-      - 8080:80
+      - 80:80
+      - 443:443
     profiles: ["full", "backend", "frontend"]
 
   sustainability-dashboard:
@@ -36,6 +37,7 @@ services:
         target: /etc/rabbitmq/conf.d/00-defaults.conf
       - source: message-queue-definitions
         target: /etc/rabbitmq/definitions.d/00-defaults.json
+    secrets:
       - source: message-queue-definitions-users
         target: /etc/rabbitmq/definitions.d/01-users.json
     healthcheck:
@@ -108,6 +110,7 @@ services:
     configs:
       - source: extraction-projects-config
         target: /etc/app/config.json
+    secrets:
       - source: extraction-projects-secrets
         target: /etc/app/secrets.json
     depends_on:
@@ -135,6 +138,7 @@ services:
     configs:
       - source: ad-resolver-config
         target: /etc/app/config.json
+    secrets:
       - source: ad-resolver-secrets
         target: /etc/app/secrets.json
     depends_on:
@@ -183,7 +187,6 @@ services:
     profiles: ["bootstrap"]
 
 configs:
-# Public configuration
   reverse-proxy-config:
     file: ./configs/reverse-proxy/Caddyfile
   sustainability-dashboard-config:
@@ -211,7 +214,7 @@ configs:
   resolver-department-config:
     file: ./configs/resolver-department/config.json
 
-# Secrets
+secrets:
   message-queue-definitions-users:
     file: ./secrets/message-queue/definitions-users.json
   extraction-projects-secrets:

@@ -7,6 +7,7 @@ services:
         target: /etc/caddy/Caddyfile
     ports:
       - 8080:80
+    profiles: ["full", "backend", "frontend"]
 
   sustainability-dashboard:
     image: ghcr.io/sustainability-zhaw/sustainability-dashboard:main
@@ -14,6 +15,7 @@ services:
     configs:
       - source: sustainability-dashboard-config
         target: /usr/share/caddy/config.json
+    profiles: ["full", "frontend"]
 
   database:
     image: dgraph/standalone:v23.0.0
@@ -23,6 +25,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    profiles: ["full", "backend", "frontend", "bootstrap"]
 
   message-queue:
     hostname: mq
@@ -33,6 +36,7 @@ services:
         target: /etc/rabbitmq/conf.d/00-defaults.conf
       - source: message-queue-definitions
         target: /etc/rabbitmq/definitions.d/00-defaults.json
+    secrets:
       - source: message-queue-definitions-users
         target: /etc/rabbitmq/definitions.d/01-users.json
     healthcheck:
@@ -40,6 +44,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    profiles: ["full", "backend"]
 
   download-gateway: 
     image: ghcr.io/sustainability-zhaw/download-gateway:main
@@ -47,6 +52,7 @@ services:
     configs:
     - source: download-gateway-config
       target: /etc/app/config.yaml
+    profiles: ["full", "frontend"]
 
   graphiql:
     image: caddy:2.6.2
@@ -56,6 +62,7 @@ services:
     depends_on:
       database:
         condition: service_healthy
+    profiles: ["full", "backend", "frontend"]
 
   keyword-webhook:
     image: ghcr.io/sustainability-zhaw/keyword-webhook:main
@@ -68,6 +75,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   sdg-indexer: 
     image: ghcr.io/sustainability-zhaw/sdg-indexer:main
@@ -80,6 +88,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   extraction-dspace: 
     image: ghcr.io/sustainability-zhaw/extraction-dspace:main
@@ -92,6 +101,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   extraction-projects: 
     image: ghcr.io/sustainability-zhaw/extraction-projects:main
@@ -99,6 +109,7 @@ services:
     configs:
       - source: extraction-projects-config
         target: /etc/app/config.json
+    secrets:
       - source: extraction-projects-secrets
         target: /etc/app/secrets.json
     depends_on:
@@ -106,6 +117,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   ad-resolver: 
     image: ghcr.io/sustainability-zhaw/ad-resolver:main
@@ -113,6 +125,7 @@ services:
     configs:
       - source: ad-resolver-config
         target: /etc/app/config.json
+    secrets:
       - source: ad-resolver-secrets
         target: /etc/app/secrets.json
     depends_on:
@@ -120,6 +133,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   resolver-classification: 
     image: ghcr.io/sustainability-zhaw/resolver-classification:main
@@ -132,6 +146,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   resolver-department: 
     image: ghcr.io/sustainability-zhaw/resolver-department:main
@@ -144,11 +159,10 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   init-database:
     image: ghcr.io/sustainability-zhaw/dgraph-schema:main
-    profiles:
-      - bootstrap
     restart: 'no'
     environment:
       DGRAPH_SERVER: http://database:8080
@@ -157,9 +171,9 @@ services:
     depends_on:
       database:
         condition: service_healthy
+    profiles: ["bootstrap"]
 
 configs:
-# Public configuration
   reverse-proxy-config:
     file: ./configs/reverse-proxy/Caddyfile
   sustainability-dashboard-config:
@@ -185,7 +199,7 @@ configs:
   resolver-department-config:
     file: ./configs/resolver-department/config.json
 
-# Secrets
+secrets:
   message-queue-definitions-users:
     file: ./secrets/message-queue/definitions-users.json
   extraction-projects-secrets:

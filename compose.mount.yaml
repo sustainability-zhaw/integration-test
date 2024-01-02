@@ -3,6 +3,10 @@ services:
     volumes: 
       - ./services/sustainability-dashboard/site:/usr/share/caddy
 
+  download-gateway:
+    volumes:
+      - ./services/download-gateway/src:/app/src
+
   sdg-indexer: 
     volumes:
       - ./services/sdg-indexer/src:/app

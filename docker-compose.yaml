@@ -16,7 +16,7 @@ services:
         target: /usr/share/caddy/config.json
 
   database:
-    image: dgraph/standalone:v23.0.0
+    image: dgraph/standalone:v23.1.0
     restart: 'no'
     healthcheck:
       test: curl -IL localhost:6080/state
@@ -26,7 +26,7 @@ services:
 
   message-queue:
     hostname: mq
-    image: rabbitmq:3.11-management
+    image: rabbitmq:3.12.12-management
     restart: 'no'
     configs:
       - source: message-queue-config

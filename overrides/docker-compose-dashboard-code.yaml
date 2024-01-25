@@ -2,3 +2,4 @@ services:
   sustainability-dashboard:
     volumes: 
       - ../sustainability-dashboard/site:/usr/share/caddy
+ 

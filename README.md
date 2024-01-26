@@ -73,3 +73,25 @@ docker compose -f docker-compose.yaml -f overrides/docker-compose-dashboard-code
 ```
 
 This assumes that the dashboard repo is in a sibling directory next to the integration tests. 
+
+## Adding a new Service 
+
+### Frontend Service
+
+A frontend service has an endpoint in the reverse proxy of the system. 
+
+All frontend services have to provide a http endpoint for the user interaction. 
+
+This endpoint has to be configured with an appropriately prefixed path in the reverse proxy.
+
+Check `configs/reverse-proxy/Caddyfile` for examples. 
+
+### Backend Serivce
+
+A backend service is a service that communicates only to the database and is triggered by other services.
+
+Backend Services are loosely coupled and communicate via a so called message queue. Such services require access to the message queue. Therefore, all backend services need (a) a service-specific user account with the message queue and (b) the privileges to access the message queue. This needs to be configured in `secrets/message-queue/definitions-users .json` in section `users` for the service accounts and in section `permissions`.
+
+## Service Development
+
+For service development it is recommended to provide a builder override that replaces the service image with a local build specification. Note that for this purpose the image name MUST be changed, too. Otherwise docker will use the original image and not the build. 

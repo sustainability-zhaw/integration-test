@@ -46,7 +46,7 @@
     }
 
     handle_path /clearindex/* {
-        reverse_proxy clearindex:80
+        reverse_proxy clearindex:8080
     }
 
     handle_path /rabbitmq/* {

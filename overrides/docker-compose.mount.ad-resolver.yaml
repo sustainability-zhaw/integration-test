@@ -1,4 +1,0 @@
-services:
-  ad-resolver:
-    volumes:
-      - ./services/ad-resolver/src:/app

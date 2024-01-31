@@ -3,3 +3,4 @@ services/
 .vscode/
 contrib/
 **/.DS_Store
+overrides/*.yaml

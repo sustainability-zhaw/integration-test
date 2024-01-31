@@ -69,12 +69,14 @@ The frontend development does not require building of most of the backend servic
 The following command launches the default system and sideloads the local dashboard code. This override allows to edit the source code without building and restarting all containers. 
 
 ```
-docker compose -f docker-compose.yaml -f overrides/docker-compose-dashboard-code.yaml up -d
+docker compose -f docker-compose.yaml -f ../sustainability-dashboard/docker-compose-override.yaml up -d
 ```
 
 This assumes that the dashboard repo is in a sibling directory next to the integration tests. 
 
 ## Adding a new Service 
+
+Any new service shoud provide an `docker-compose-override.yaml`-file to be used as override for the integration stack. 
 
 ### Frontend Service
 

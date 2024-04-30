@@ -8,8 +8,17 @@
 }
 
 
+# Falls der Server eine DynDNS Adresse hat, kann auch SSL verwendet werden.
+# In diesem Fall muss der mein-pi.example.com:443 anstelle von 80 verwendet werden.
+#
+# https://caddyserver.com/docs/automatic-https
+
 :80 {
+    # Der Standardeinstieg ist das Dashboard
     redir / /dashboard/
+
+    # Das Frontend des Projekts ist Web-basiert und benötigt zusätzliche rewrite-Einstellungen, 
+    # die für einfache Weiterleitungen nicht notwendig sind.
 
     rewrite /webhook/* /webhook/payload
     rewrite /webhook /webhook/payload
@@ -19,6 +28,19 @@
     
     rewrite /stats/* /stats/query
     rewrite /stats /stats/query
+
+    # Im folgenden werden die Weiterleitungen an die Service Endpunkte definiert.
+    # Die Namen hinter reverse_proxy müssen mit den Namen der Docker Container im Compose-File übereinstimmen.
+    # Wichtig ist hier, dass der Port des Containers auch angegeben wird, sonst versucht Caddy eine 
+    # Verbindung auf Port 80.
+    # Der Pfad ist frei wählbar, darf sich aber nicht mit anderen Pfaden überschneiden.
+    # 
+    # Anschliessend kann der Container über den Pfad angesprochen werden.
+    #
+    # Beispiele: 
+    # http://mein-pi/dashboard
+    # http://mein-pi/api
+
 
     handle_path /dashboard/download/* {
         reverse_proxy download-gateway:8080

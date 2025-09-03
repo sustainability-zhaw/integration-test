@@ -1,32 +1,41 @@
 services:
   sustainability-dashboard:
     volumes: 
-      - ./services/sustainability-dashboard/site:/usr/share/caddy
+      - ${SERVICES_DIR:-./services}/sustainability-dashboard/site:/usr/share/caddy
+
+  clearindex:
+    volumes: 
+      - ${SERVICES_DIR:-./services}/clearindex/src/:/app
 
   download-gateway:
     volumes:
-      - ./services/download-gateway/src:/app/src
+      - ${SERVICES_DIR:-./services}/download-gateway/src:/app
 
   sdg-indexer: 
     volumes:
-      - ./services/sdg-indexer/src:/app
+      - ${SERVICES_DIR:-./services}/sdg-indexer/src:/app
 
   extraction-dspace:
     volumes:
-      - ./services/extraction-dspace/src:/app
+      - ${SERVICES_DIR:-./services}/extraction-dspace/src:/app
 
   extraction-projects:
     volumes:
-      - ./services/extraction-projects/src:/app
+      - ${SERVICES_DIR:-./services}/extraction-projects/src:/app
 
   ad-resolver:
     volumes:
-      - ./services/ad-resolver/src:/app
+      - ${SERVICES_DIR:-./services}/ad-resolver/src:/app
 
   resolver-classification:
     volumes:
-      - ./services/resolver-classification/src:/app
+      - ${SERVICES_DIR:-./services}/resolver-classification/src:/app
 
   resolver-department:
     volumes:
-      - ./services/resolver-department/src:/app
+      - ${SERVICES_DIR:-./services}/resolver-department/src:/app
+
+  init-database:
+   volumes:
+      - ${SERVICES_DIR:-./services}/dgraph-schema/schema:/data/schema
+      - ${SERVICES_DIR:-./services}/dgraph-schema/sampledata/sampledata

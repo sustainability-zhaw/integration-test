@@ -24,7 +24,11 @@ Run this once before starting the system for the first time to install the schem
 docker compose run --rm init-database
 ```
 
-### 2. Starting the system
+### 2. Clone services (Optional)
+
+To use the `compose.build.yaml` or `compose.mount.yaml` override clone all or some (if using only specific services) of the services to the services directory.
+
+### 3. Starting the system
 
 The system can be started in different configurations depending on the combination of overrides and profiles used.
 
@@ -62,13 +66,15 @@ docker compose --profile full down
 
 ## Profiles
 
-| |full|frontend|backend|bootstrap|
+|Service|full|frontend|backend|bootstrap|
 |-|----|--------|-------|---------|
 |reverse-proxy|:white_check_mark:|:white_check_mark:|:white_check_mark:||
 |database|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|init-database||||:white_check_mark:|
 |graphiql|:white_check_mark:|:white_check_mark:|:white_check_mark:||
 |sustainability-dashboard|:white_check_mark:|:white_check_mark:|||
-|download-gateway|:white_check_mark:|:white_check_mark:|||
+|clearindex|:white_check_mark:||:white_check_mark:||
+|download-gateway|:white_check_mark:||:white_check_mark:||
 |message-queue|:white_check_mark:||:white_check_mark:||
 |keyword-webhook|:white_check_mark:||:white_check_mark:||
 |sdg-indexer|:white_check_mark:||:white_check_mark:||
@@ -77,27 +83,6 @@ docker compose --profile full down
 |ad-resolve|:white_check_mark:||:white_check_mark:||
 |resolver-classification|:white_check_mark:||:white_check_mark:||
 |resolver-department|:white_check_mark:||:white_check_mark:||
-|init-database||||:white_check_mark:|
-
-## Overrides
-
-TODO Explain overrides
-
-### Using overrides for frontend development
-
-The frontend development does not require building of most of the backend services and is basically focused around the static files served by the dashboard container. 
-
-The following command launches the default system and sideloads the local dashboard code. This override allows to edit the source code without building and restarting all containers. 
-
-```
-docker compose -f docker-compose.yaml -f ../sustainability-dashboard/docker-compose-override.yaml up -d
-```
-
-This assumes that the dashboard repo is in a sibling directory next to the integration tests. 
-
-## Adding a new Service 
-
-Any new service shoud provide an `docker-compose-override.yaml`-file to be used as override for the integration stack. 
 
 ### Frontend Service
 

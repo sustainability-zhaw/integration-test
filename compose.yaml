@@ -1,6 +1,6 @@
 services:
   reverse-proxy:
-    image: caddy:2.7.6
+    image: caddy:2.10.0
     restart: 'no'
     configs:
       - source: reverse-proxy-config
@@ -18,7 +18,7 @@ services:
     profiles: ["full", "frontend"]
 
   database:
-    image: dgraph/standalone:v23.1.0
+    image: dgraph/standalone:v24.1.4
     restart: 'no'
     healthcheck:
       test: curl -IL localhost:6080/state
@@ -52,10 +52,10 @@ services:
     configs:
     - source: download-gateway-config
       target: /etc/app/config.yaml
-    profiles: ["full", "frontend"]
+    profiles: ["full", "backend"]
 
   graphiql:
-    image: caddy:2.7.6
+    image: caddy:2.10.0
     restart: 'no'
     volumes:
       - ./graphiql:/usr/share/caddy
@@ -178,8 +178,7 @@ services:
     restart: 'no'
     environment:
       DGRAPH_SERVER: http://database:8080
-    volumes:
-      - ./init-database/entrypoint.sh:/data/entrypoint.sh
+      TIMEOUT: 0
     depends_on:
       database:
         condition: service_healthy

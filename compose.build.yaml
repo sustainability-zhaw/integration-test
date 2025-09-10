@@ -1,35 +1,35 @@
 services:
   sustainability-dashboard:
     build:
-      context: ${SERVICES_DIR:-./services}/sustainability-dashboard
+      context: ${SERVICES_DIR:-..}/sustainability-dashboard
       dockerfile: local.Dockerfile
 
   clearindex:
-    build: ${SERVICES_DIR:-./services}/clearindex
+    build: ${SERVICES_DIR:-..}/clearindex
 
   download-gateway:
-    build: ${SERVICES_DIR:-./services}/download-gateway
+    build: ${SERVICES_DIR:-..}/download-gateway
 
   keyword-webhook:
-    build: ${SERVICES_DIR:-./services}/keyword-webhook 
+    build: ${SERVICES_DIR:-..}/keyword-webhook 
 
   sdg-indexer: 
-    build: ${SERVICES_DIR:-./services}/sdg-indexer
+    build: ${SERVICES_DIR:-..}/sdg-indexer
 
   extraction-dspace: 
-    build: ${SERVICES_DIR:-./services}/extraction-dspace
+    build: ${SERVICES_DIR:-..}/extraction-dspace
 
   extraction-projects: 
-    build: ${SERVICES_DIR:-./services}/extraction-projects
+    build: ${SERVICES_DIR:-..}/extraction-projects
 
   ad-resolver: 
-    build: ${SERVICES_DIR:-./services}/ad-resolver
+    build: ${SERVICES_DIR:-..}/ad-resolver
 
   resolver-classification: 
-    build: ${SERVICES_DIR:-./services}/resolver-classification
+    build: ${SERVICES_DIR:-..}/resolver-classification
 
   resolver-department: 
-    build: ${SERVICES_DIR:-./services}/resolver-department
+    build: ${SERVICES_DIR:-..}/resolver-department
 
   init-database:
-    build: ${SERVICES_DIR:-./services}/dgraph-schema
+    build: ${SERVICES_DIR:-..}/dgraph-schema

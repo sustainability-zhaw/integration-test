@@ -1,6 +1,7 @@
 secrets/
-services/*
+services/
 .vscode/
 contrib/
 **/.DS_Store
 !.gitkeep
+.env

@@ -1,41 +1,41 @@
 services:
   sustainability-dashboard:
     volumes: 
-      - ${SERVICES_DIR:-./services}/sustainability-dashboard/site:/usr/share/caddy
+      - ${SERVICES_DIR:-..}/sustainability-dashboard/site:/usr/share/caddy
 
   clearindex:
     volumes: 
-      - ${SERVICES_DIR:-./services}/clearindex/src/:/app
+      - ${SERVICES_DIR:-..}/clearindex/src/:/app
 
   download-gateway:
     volumes:
-      - ${SERVICES_DIR:-./services}/download-gateway/src:/app
+      - ${SERVICES_DIR:-..}/download-gateway/src:/app
 
   sdg-indexer: 
     volumes:
-      - ${SERVICES_DIR:-./services}/sdg-indexer/src:/app
+      - ${SERVICES_DIR:-..}/sdg-indexer/src:/app
 
   extraction-dspace:
     volumes:
-      - ${SERVICES_DIR:-./services}/extraction-dspace/src:/app
+      - ${SERVICES_DIR:-..}/extraction-dspace/src:/app
 
   extraction-projects:
     volumes:
-      - ${SERVICES_DIR:-./services}/extraction-projects/src:/app
+      - ${SERVICES_DIR:-..}/extraction-projects/src:/app
 
   ad-resolver:
     volumes:
-      - ${SERVICES_DIR:-./services}/ad-resolver/src:/app
+      - ${SERVICES_DIR:-..}/ad-resolver/src:/app
 
   resolver-classification:
     volumes:
-      - ${SERVICES_DIR:-./services}/resolver-classification/src:/app
+      - ${SERVICES_DIR:-..}/resolver-classification/src:/app
 
   resolver-department:
     volumes:
-      - ${SERVICES_DIR:-./services}/resolver-department/src:/app
+      - ${SERVICES_DIR:-..}/resolver-department/src:/app
 
   init-database:
    volumes:
-      - ${SERVICES_DIR:-./services}/dgraph-schema/schema:/data/schema
-      - ${SERVICES_DIR:-./services}/dgraph-schema/sampledata/sampledata
+      - ${SERVICES_DIR:-..}/dgraph-schema/schema:/data/schema
+      - ${SERVICES_DIR:-..}/dgraph-schema/sampledata/sampledata

@@ -26,7 +26,11 @@ docker compose run --rm init-database
 
 ### 2. Clone services (Optional)
 
-To use the `compose.build.yaml` or `compose.mount.yaml` override clone all or some (if using only specific services) of the services to the services directory.
+To use the `compose.build.yaml` or `compose.mount.yaml` override clone all or some services so that they are a sibling directory of this project.
+
+> [!Tip]
+> If you whish to clone services to another location define the `SERVICES_DIR`
+> env variable (without trailing slash). See [.env-example](.env-example).
 
 ### 3. Starting the system
 

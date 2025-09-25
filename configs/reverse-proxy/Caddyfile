@@ -67,6 +67,10 @@
         reverse_proxy database:8080
     }
 
+    handle_path /graphiql {
+        reverse_proxy graphiql:80
+    }
+
     handle_path /graphiql/* {
         reverse_proxy graphiql:80
     }

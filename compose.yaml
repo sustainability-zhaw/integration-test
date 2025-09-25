@@ -130,6 +130,7 @@ services:
         condition: service_healthy
       message-queue:
         condition: service_healthy
+    profiles: ["full", "backend"]
 
   ad-resolver: 
     image: ghcr.io/sustainability-zhaw/ad-resolver:main

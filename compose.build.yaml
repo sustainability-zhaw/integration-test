@@ -22,6 +22,9 @@ services:
   extraction-projects: 
     build: ${SERVICES_DIR:-..}/extraction-projects
 
+  extraction-evento: 
+    build: ${SERVICES_DIR:-..}/extraction-evento
+
   ad-resolver: 
     build: ${SERVICES_DIR:-..}/ad-resolver
 

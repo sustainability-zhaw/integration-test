@@ -23,6 +23,10 @@ services:
     volumes:
       - ${SERVICES_DIR:-..}/extraction-projects/src:/app
 
+  extraction-evento:
+    volumes:
+      - ${SERVICES_DIR:-..}/extraction-evento/src:/app/src/
+
   ad-resolver:
     volumes:
       - ${SERVICES_DIR:-..}/ad-resolver/src:/app

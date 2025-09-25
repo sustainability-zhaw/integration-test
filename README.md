@@ -38,6 +38,11 @@ The system can be started in different configurations depending on the combinati
 
 Below are the most commonly used system configurations to start the `full` system. For an overview of available profiles see [Profiles](#Profiles).
 
+> [!IMPORTANT]
+> When switching between different overrides it is possible
+> that docker compose will not rebuild images or recreate 
+> containers if already present. In this case make use of `--build` and/or `--force-recreate` accordingly. See [docker docs](https://docs.docker.com/reference/cli/docker/compose/up/) for more info.
+
 #### Use the latest docker images from GitHub
 
 ```

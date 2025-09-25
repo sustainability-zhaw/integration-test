@@ -34,5 +34,5 @@ services:
   resolver-department: 
     build: ${SERVICES_DIR:-..}/resolver-department
 
-  init-database:
+  dgraph-schema:
     build: ${SERVICES_DIR:-..}/dgraph-schema

@@ -39,6 +39,6 @@ services:
     user: "0"
     command: ["sh", "-c", "tail -f /dev/null"]
 
-  init-database:
+  dgraph-schema:
     user: "0"
     command: ["sh", "-c", "tail -f /dev/null"]

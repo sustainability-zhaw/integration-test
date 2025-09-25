@@ -39,7 +39,7 @@ services:
     volumes:
       - ${SERVICES_DIR:-..}/resolver-department/src:/app
 
-  init-database:
+  dgraph-schema:
    volumes:
       - ${SERVICES_DIR:-..}/dgraph-schema/schema:/data/schema
       - ${SERVICES_DIR:-..}/dgraph-schema/sampledata/sampledata

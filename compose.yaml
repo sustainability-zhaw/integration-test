@@ -174,7 +174,7 @@ services:
         condition: service_healthy
     profiles: ["full", "backend"]
 
-  init-database:
+  dgraph-schema:
     image: ghcr.io/sustainability-zhaw/dgraph-schema:main
     restart: 'no'
     environment:

@@ -74,7 +74,7 @@ docker compose --profile full down
 |-|----|--------|-------|---------|
 |reverse-proxy|:white_check_mark:|:white_check_mark:|:white_check_mark:||
 |database|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|init-database||||:white_check_mark:|
+|dgraph-schema||||:white_check_mark:|
 |graphiql|:white_check_mark:|:white_check_mark:|:white_check_mark:||
 |sustainability-dashboard|:white_check_mark:|:white_check_mark:|||
 |clearindex|:white_check_mark:||:white_check_mark:||

@@ -10,7 +10,7 @@ services:
     profiles: ["full", "backend", "frontend"]
 
   sustainability-dashboard:
-    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:main
+    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-7ee6477
     restart: 'no'
     configs:
       - source: sustainability-dashboard-config
@@ -47,7 +47,7 @@ services:
     profiles: ["full", "backend"]
 
   download-gateway: 
-    image: ghcr.io/sustainability-zhaw/download-gateway:main
+    image: ghcr.io/sustainability-zhaw/download-gateway:sha-8be20d3
     restart: 'no'
     configs:
     - source: download-gateway-config
@@ -65,7 +65,7 @@ services:
     profiles: ["full", "backend", "frontend"]
 
   keyword-webhook:
-    image: ghcr.io/sustainability-zhaw/keyword-webhook:main
+    image: ghcr.io/sustainability-zhaw/keyword-webhook:sha-c5f4ca9
     restart: 'no'
     configs:
       - source: keyword-webhook-config
@@ -78,7 +78,7 @@ services:
     profiles: ["full", "backend"]
 
   sdg-indexer: 
-    image: ghcr.io/sustainability-zhaw/sdg-indexer:main
+    image: ghcr.io/sustainability-zhaw/sdg-indexer:sha-e0d2f16
     restart: "no"
     configs:
       - source: sdg-indexer-config
@@ -91,7 +91,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-dspace: 
-    image: ghcr.io/sustainability-zhaw/extraction-dspace:main
+    image: ghcr.io/sustainability-zhaw/extraction-dspace:sha-768ece6
     restart: "no"
     configs:
       - source: extraction-dspace-config
@@ -104,7 +104,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-projects: 
-    image: ghcr.io/sustainability-zhaw/extraction-projects:main
+    image: ghcr.io/sustainability-zhaw/extraction-projects:sha-8e06eda
     restart: "no"
     configs:
       - source: extraction-projects-config
@@ -120,7 +120,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-evento: 
-    image: ghcr.io/sustainability-zhaw/extraction-evento:main
+    image: ghcr.io/sustainability-zhaw/extraction-evento:sha-0169245
     restart: "no"
     configs:
       - source: extraction-evento-config
@@ -133,7 +133,7 @@ services:
     profiles: ["full", "backend"]
 
   ad-resolver: 
-    image: ghcr.io/sustainability-zhaw/ad-resolver:main
+    image: ghcr.io/sustainability-zhaw/ad-resolver:sha-354c225
     restart: "no"
     configs:
       - source: ad-resolver-config
@@ -149,7 +149,7 @@ services:
     profiles: ["full", "backend"]
 
   resolver-classification: 
-    image: ghcr.io/sustainability-zhaw/resolver-classification:main
+    image: ghcr.io/sustainability-zhaw/resolver-classification:sha-aae75b1
     restart: "no"
     configs:
       - source: resolver-classification-config
@@ -162,7 +162,7 @@ services:
     profiles: ["full", "backend"]
 
   resolver-department: 
-    image: ghcr.io/sustainability-zhaw/resolver-department:main
+    image: ghcr.io/sustainability-zhaw/resolver-department:sha-1d20608
     restart: "no"
     configs:
       - source: resolver-department-config
@@ -175,7 +175,7 @@ services:
     profiles: ["full", "backend"]
 
   dgraph-schema:
-    image: ghcr.io/sustainability-zhaw/dgraph-schema:main
+    image: ghcr.io/sustainability-zhaw/dgraph-schema:sha-099988b
     restart: 'no'
     environment:
       DGRAPH_SERVER: http://database:8080

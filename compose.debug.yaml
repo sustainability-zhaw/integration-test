@@ -3,10 +3,6 @@ services:
     user: "0"
     command: ["sh", "-c", "tail -f /dev/null"]
 
-  clearindex:
-    user: "0"
-    command: ["sh", "-c", "tail -f /dev/null"]
-
   download-gateway:
     user: "0"
     command: ["sh", "-c", "tail -f /dev/null"]

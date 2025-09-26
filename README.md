@@ -82,7 +82,6 @@ docker compose --profile full down
 |dgraph-schema||||:white_check_mark:|
 |graphiql|:white_check_mark:|:white_check_mark:|:white_check_mark:||
 |sustainability-dashboard|:white_check_mark:|:white_check_mark:|||
-|clearindex|:white_check_mark:||:white_check_mark:||
 |download-gateway|:white_check_mark:||:white_check_mark:||
 |message-queue|:white_check_mark:||:white_check_mark:||
 |keyword-webhook|:white_check_mark:||:white_check_mark:||

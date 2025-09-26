@@ -119,13 +119,6 @@
             "configure":".*",
             "write":".*",
             "read":".*"
-        },
-        {
-            "user":"clearindex",
-            "vhost":"/",
-            "configure":".*",
-            "write":".*",
-            "read":".*"
         }
     ]
 }

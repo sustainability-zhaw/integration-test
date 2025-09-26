@@ -3,10 +3,6 @@ services:
     volumes: 
       - ${SERVICES_DIR:-..}/sustainability-dashboard/site:/usr/share/caddy
 
-  clearindex:
-    volumes: 
-      - ${SERVICES_DIR:-..}/clearindex/src/:/app
-
   download-gateway:
     volumes:
       - ${SERVICES_DIR:-..}/download-gateway/src:/app

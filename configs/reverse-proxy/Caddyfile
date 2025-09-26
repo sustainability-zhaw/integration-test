@@ -47,10 +47,6 @@
         # reverse_proxy contrib-dlgw-1:8080
     }
 
-    handle_path /clearindex/* {
-        reverse_proxy clearindex:8080
-    }
-
     handle_path /dashboard/* {
         reverse_proxy sustainability-dashboard:80
     }

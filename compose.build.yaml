@@ -4,9 +4,6 @@ services:
       context: ${SERVICES_DIR:-..}/sustainability-dashboard
       dockerfile: local.Dockerfile
 
-  clearindex:
-    build: ${SERVICES_DIR:-..}/clearindex
-
   download-gateway:
     build: ${SERVICES_DIR:-..}/download-gateway
 

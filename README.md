@@ -21,7 +21,7 @@ You will need to provide your own keys and credentials. Look at the GitHub repos
 Run this once before starting the system for the first time to install the schema and load required data.
 
 ```
-docker compose run --rm init-database
+docker compose run --rm dgraph-schema
 ```
 
 ### 2. Clone services (Optional)
@@ -75,7 +75,7 @@ docker compose --profile full down
 
 ## Profiles
 
-|Service|full|frontend|backend|bootstrap|
+|Service|full|frontend|backend|init|
 |-|----|--------|-------|---------|
 |reverse-proxy|:white_check_mark:|:white_check_mark:|:white_check_mark:||
 |database|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|

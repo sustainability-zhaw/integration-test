@@ -43,13 +43,13 @@ Below are the most commonly used system configurations to start the `full` syste
 > that docker compose will not rebuild images or recreate 
 > containers if already present. In this case make use of `--build` and/or `--force-recreate` accordingly. See [docker docs](https://docs.docker.com/reference/cli/docker/compose/up/) for more info.
 
-#### Use the latest docker images from GitHub
+#### Use the latest stable docker images from GitHub
 
 ```
 docker compose --profile full up -d
 ```
 
-#### Use the latest docker images and mount local source code
+#### Use the latest stable docker images and mount local source code
 
 ```
 docker compose -f compose.yaml -f compose.mount.yaml --profile full up -d 

@@ -92,6 +92,15 @@ docker compose --profile full down
 |resolver-classification|:white_check_mark:||:white_check_mark:||
 |resolver-department|:white_check_mark:||:white_check_mark:||
 
+## Adding a new Service 
+
+Any new service should:
+
+- Include a service entry in compose.yaml and overrides.
+- Be assigned the `full` profile, along with any other appropriate profiles.
+- Provide configuration for testing in the [configs](configs/) directory.
+- Include example secrets in the [secrets-example](secrets-example/) directory.
+
 ### Frontend Service
 
 A frontend service has an endpoint in the reverse proxy of the system. 

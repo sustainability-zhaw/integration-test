@@ -67,10 +67,6 @@
         reverse_proxy graphiql:80
     }
 
-    handle_path /clearindex/* {
-        reverse_proxy clearindex:8080
-    }
-
     handle_path /rabbitmq/* {
         # Expose rabbitmq management port for development
         reverse_proxy mq:15672

@@ -41,18 +41,6 @@ services:
       timeout: 5s
       retries: 3
 
-  clearindex:
-    image: ghcr.io/sustainability-zhaw/clearindex:main
-    restart: 'no'
-    depends_on:
-      database:
-        condition: service_healthy
-      message-queue:
-        condition: service_healthy
-    configs:
-      - source: clearindex-config
-        target: /etc/app/config.yaml
-
   download-gateway: 
     image: ghcr.io/sustainability-zhaw/download-gateway:main
     restart: 'no'
@@ -210,8 +198,6 @@ configs:
     file: ./configs/resolver-classification/config.json
   resolver-department-config:
     file: ./configs/resolver-department/config.json
-  clearindex-config:
-    file: ./configs/clearindex/config.yaml
 
 # Secrets
   message-queue-definitions-users:

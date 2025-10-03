@@ -120,7 +120,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-evento: 
-    image: ghcr.io/sustainability-zhaw/extraction-evento:sha-0169245
+    image: ghcr.io/sustainability-zhaw/extraction-evento:sha-e999ada
     restart: "no"
     configs:
       - source: extraction-evento-config

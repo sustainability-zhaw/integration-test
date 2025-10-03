@@ -1,40 +1,40 @@
 services:
   sustainability-dashboard:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   download-gateway:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   sdg-indexer: 
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   extraction-dspace:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   extraction-projects:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   extraction-evento:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   ad-resolver:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   resolver-classification:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   resolver-department:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
   dgraph-schema:
-    user: "0"
+    user: root
     command: ["sh", "-c", "tail -f /dev/null"]

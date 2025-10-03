@@ -96,10 +96,13 @@ docker compose --profile full down
 
 Any new service should:
 
-- Include a service entry in compose.yaml and overrides.
-- Be assigned the `full` profile, along with any other appropriate profiles.
-- Provide configuration for testing in the [configs](configs/) directory.
-- Include example secrets in the [secrets-example](secrets-example/) directory.
+- Add a service entry in compose.yaml and overrides.
+- Have the `full` profile, along with any other appropriate profiles assigned.
+- Add configuration files for testing in the [configs](configs/) directory.
+- Add example secrets in the [secrets-example](secrets-example/) directory.
+- Add a message queue user and permission entry under [definition-users.json](secrets-example/message-queue/definitions-users.json) if using message queue.
+  - Tip: Duplicate entry of another service and change the name. These are all test users with the same password `guest`.
+- Add a message queue entry under [definitions.json](configs/message-queue/definitions.json) if owning any message queues.
 
 ### Frontend Service
 

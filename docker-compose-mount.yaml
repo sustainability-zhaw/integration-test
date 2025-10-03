@@ -115,6 +115,20 @@ services:
       message-queue:
         condition: service_healthy
 
+  extraction-evento: 
+    build: ./services/extraction-evento
+    restart: "no"
+    configs:
+      - source: extraction-evento-config
+        target: /etc/app/config.json
+    volumes:
+      - ./services/extraction-evento/src:/app
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+
   ad-resolver: 
     build: ./services/ad-resolver
     restart: "no"
@@ -194,6 +208,8 @@ configs:
     file: ./configs/ad-resolver/config.json
   extraction-projects-config:
     file: ./configs/extraction-projects/config.json
+  extraction-evento-config:
+    file: ./configs/extraction-evento/config.json
   resolver-classification-config:
     file: ./configs/resolver-classification/config.json
   resolver-department-config:

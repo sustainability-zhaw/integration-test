@@ -117,7 +117,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-evento: 
-    image: ghcr.io/sustainability-zhaw/extraction-evento:sha-e999ada
+    image: ghcr.io/sustainability-zhaw/extraction-evento:sha-8399418
     restart: "no"
     configs:
       - source: extraction-evento-config
@@ -130,7 +130,7 @@ services:
     profiles: ["full", "backend"]
 
   ad-resolver: 
-    image: ghcr.io/sustainability-zhaw/ad-resolver:sha-354c225
+    image: ghcr.io/sustainability-zhaw/ad-resolver:sha-1dd5e73
     restart: "no"
     configs:
       - source: ad-resolver-config

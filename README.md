@@ -28,10 +28,6 @@ docker compose run --rm dgraph-schema
 
 To use the `compose.build.yaml` or `compose.mount.yaml` override clone all or some services so that they are a sibling directory of this project.
 
-> [!Tip]
-> If you whish to clone services to another location define the `SERVICES_DIR`
-> env variable (without trailing slash). See [.env-example](.env-example).
-
 ### 3. Starting the system
 
 The system can be started in different configurations depending on the combination of overrides and profiles used.

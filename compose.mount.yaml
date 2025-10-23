@@ -1,41 +1,41 @@
 services:
   sustainability-dashboard:
     volumes: 
-      - ${SERVICES_DIR:-..}/sustainability-dashboard/site:/usr/share/caddy
+      - ../sustainability-dashboard/site:/usr/share/caddy
 
   download-gateway:
     volumes:
-      - ${SERVICES_DIR:-..}/download-gateway/src:/app
+      - ../download-gateway/src:/app
 
   sdg-indexer: 
     volumes:
-      - ${SERVICES_DIR:-..}/sdg-indexer/src:/app
+      - ../sdg-indexer/src:/app
 
   extraction-dspace:
     volumes:
-      - ${SERVICES_DIR:-..}/extraction-dspace/src:/app
+      - ../extraction-dspace/src:/app
 
   extraction-projects:
     volumes:
-      - ${SERVICES_DIR:-..}/extraction-projects/src:/app
+      - ../extraction-projects/src:/app
 
   extraction-evento:
     volumes:
-      - ${SERVICES_DIR:-..}/extraction-evento/src:/app/src/
+      - ../extraction-evento/src:/app/src/
 
   ad-resolver:
     volumes:
-      - ${SERVICES_DIR:-..}/ad-resolver/src:/app
+      - ../ad-resolver/src:/app
 
   resolver-classification:
     volumes:
-      - ${SERVICES_DIR:-..}/resolver-classification/src:/app
+      - ../resolver-classification/src:/app
 
   resolver-department:
     volumes:
-      - ${SERVICES_DIR:-..}/resolver-department/src:/app
+      - ../resolver-department/src:/app
 
   dgraph-schema:
    volumes:
-      - ${SERVICES_DIR:-..}/dgraph-schema/schema:/data/schema
-      - ${SERVICES_DIR:-..}/dgraph-schema/sampledata/sampledata
+      - ../dgraph-schema/schema:/data/schema
+      - ../dgraph-schema/sampledata/sampledata

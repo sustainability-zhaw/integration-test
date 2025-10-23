@@ -1,35 +1,35 @@
 services:
   sustainability-dashboard:
     build:
-      context: ${SERVICES_DIR:-..}/sustainability-dashboard
+      context: ../sustainability-dashboard
       dockerfile: local.Dockerfile
 
   download-gateway:
-    build: ${SERVICES_DIR:-..}/download-gateway
+    build: ../download-gateway
 
   keyword-webhook:
-    build: ${SERVICES_DIR:-..}/keyword-webhook 
+    build: ../keyword-webhook 
 
   sdg-indexer: 
-    build: ${SERVICES_DIR:-..}/sdg-indexer
+    build: ../sdg-indexer
 
   extraction-dspace: 
-    build: ${SERVICES_DIR:-..}/extraction-dspace
+    build: ../extraction-dspace
 
   extraction-projects: 
-    build: ${SERVICES_DIR:-..}/extraction-projects
+    build: ../extraction-projects
 
   extraction-evento: 
-    build: ${SERVICES_DIR:-..}/extraction-evento
+    build: ../extraction-evento
 
   ad-resolver: 
-    build: ${SERVICES_DIR:-..}/ad-resolver
+    build: ../ad-resolver
 
   resolver-classification: 
-    build: ${SERVICES_DIR:-..}/resolver-classification
+    build: ../resolver-classification
 
   resolver-department: 
-    build: ${SERVICES_DIR:-..}/resolver-department
+    build: ../resolver-department
 
   dgraph-schema:
-    build: ${SERVICES_DIR:-..}/dgraph-schema
+    build: ../dgraph-schema

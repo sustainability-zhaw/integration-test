@@ -96,7 +96,7 @@ Any new service should:
 - Have the `full` profile, along with any other appropriate profiles assigned.
 - Add configuration files for testing in the [configs](configs/) directory.
 - Add example secrets in the [secrets-example](secrets-example/) directory.
-- Add a message queue user and permission entry under [definition-users.json](secrets-example/message-queue/definitions-users.json) if using message queue.
+- Add a message queue user and permission entry under [definition.json](configs/message-queue/definitions.json) if using message queue.
   - Tip: Duplicate entry of another service and change the name. These are all test users with the same password `guest`.
 - Add a message queue entry under [definitions.json](configs/message-queue/definitions.json) if owning any message queues.
 

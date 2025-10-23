@@ -33,12 +33,9 @@ services:
     restart: 'no'
     configs:
       - source: message-queue-config
-        target: /etc/rabbitmq/conf.d/00-defaults.conf
+        target: /etc/rabbitmq/rabbitmq.conf
       - source: message-queue-definitions
-        target: /etc/rabbitmq/definitions.d/00-defaults.json
-    secrets:
-      - source: message-queue-definitions-users
-        target: /etc/rabbitmq/definitions.d/01-users.json
+        target: /etc/rabbitmq/definitions.json
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 10s
@@ -214,8 +211,6 @@ configs:
     file: ./configs/resolver-department/config.json
 
 secrets:
-  message-queue-definitions-users:
-    file: ./secrets/message-queue/definitions-users.json
   extraction-projects-secrets:
     file: ./secrets/extraction-projects/secrets.json
   ad-resolver-secrets:

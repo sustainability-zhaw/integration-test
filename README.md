@@ -87,30 +87,21 @@ docker compose --profile full down
 |resolver-classification|:white_check_mark:||:white_check_mark:||
 |resolver-department|:white_check_mark:||:white_check_mark:||
 
-## Adding a new Service 
+## Adding a new service 
 
-Any new service should:
+### All services
 
-- Add a service entry in compose.yaml and overrides.
-- Have the `full` profile, along with any other appropriate profiles assigned.
+- Add a service entry in [compose.yaml](compose.yaml) and any overrides where appropiate.
+- Add the `full` profile, along with any other appropriate profiles.
 - Add configuration files for testing in the [configs](configs/) directory.
 - Add example secrets in the [secrets-example](secrets-example/) directory.
-- Add a message queue user and permission entry under [definition.json](configs/message-queue/definitions.json) if using message queue.
+
+### Frontend services
+
+- Add the path it should be reachable on from the dashboard to the [reverse proxy config](configs/reverse-proxy/Caddyfile).
+
+### Backend services
+
+- Add a message queue user and permission entry under [definition.json](configs/message-queue/definitions.json) if using the message queue.
   - Tip: Duplicate entry of another service and change the name. These are all test users with the same password `guest`.
 - Add a message queue entry under [definitions.json](configs/message-queue/definitions.json) if owning any message queues.
-
-### Frontend Service
-
-A frontend service has an endpoint in the reverse proxy of the system. 
-
-All frontend services have to provide a http endpoint for the user interaction. 
-
-This endpoint has to be configured with an appropriately prefixed path in the reverse proxy.
-
-Check `configs/reverse-proxy/Caddyfile` for examples. 
-
-### Backend Serivce
-
-A backend service is a service that communicates only to the database and is triggered by other services.
-
-Backend Services are loosely coupled and communicate via a so called message queue. Such services require access to the message queue. Therefore, all backend services need (a) a service-specific user account with the message queue and (b) the privileges to access the message queue. This needs to be configured in `secrets/message-queue/definitions-users .json` in section `users` for the service accounts and in section `permissions`.

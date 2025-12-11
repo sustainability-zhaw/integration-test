@@ -2,6 +2,10 @@
 
 A set of docker compose configurations to localy test and verify the interplay of all services.
 
+## Prerequisite
+
+- Docker Compsoe >= 2.20.0
+
 ## Configurations
 
 ### Configs
@@ -33,11 +37,6 @@ To use the `compose.build.yaml` or `compose.mount.yaml` override clone all or so
 The system can be started in different configurations depending on the combination of overrides and profiles used.
 
 Below are the most commonly used system configurations to start the `full` system. For an overview of available profiles see [Profiles](#Profiles).
-
-> [!IMPORTANT]
-> When switching between different overrides it is possible
-> that docker compose will not rebuild images or recreate 
-> containers if already present. In this case make use of `--build` and/or `--force-recreate` accordingly. See [docker docs](https://docs.docker.com/reference/cli/docker/compose/up/) for more info.
 
 #### Use the latest stable docker images from GitHub
 
@@ -115,7 +114,3 @@ Check `configs/reverse-proxy/Caddyfile` for examples.
 A backend service is a service that communicates only to the database and is triggered by other services.
 
 Backend Services are loosely coupled and communicate via a so called message queue. Such services require access to the message queue. Therefore, all backend services need (a) a service-specific user account with the message queue and (b) the privileges to access the message queue. This needs to be configured in `secrets/message-queue/definitions-users .json` in section `users` for the service accounts and in section `permissions`.
-
-## Service Development
-
-For service development it is recommended to provide a builder override that replaces the service image with a local build specification. Note that for this purpose the image name MUST be changed, too. Otherwise docker will use the original image and not the build. 

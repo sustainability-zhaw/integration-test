@@ -10,7 +10,7 @@ services:
     profiles: ["full", "backend", "frontend"]
 
   sustainability-dashboard:
-    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-7ee6477
+    image: ghcr.io/sustainability-zhaw/sustainability-dashboard:sha-0a36cd0
     restart: 'no'
     configs:
       - source: sustainability-dashboard-config
@@ -62,7 +62,7 @@ services:
     profiles: ["full", "backend", "frontend"]
 
   keyword-webhook:
-    image: ghcr.io/sustainability-zhaw/keyword-webhook:sha-c5f4ca9
+    image: ghcr.io/sustainability-zhaw/keyword-webhook:sha-b82de89
     restart: 'no'
     configs:
       - source: keyword-webhook-config
@@ -75,7 +75,7 @@ services:
     profiles: ["full", "backend"]
 
   sdg-indexer: 
-    image: ghcr.io/sustainability-zhaw/sdg-indexer:sha-e0d2f16
+    image: ghcr.io/sustainability-zhaw/sdg-indexer:sha-0c5b8a3
     restart: "no"
     configs:
       - source: sdg-indexer-config
@@ -101,7 +101,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-projects: 
-    image: ghcr.io/sustainability-zhaw/extraction-projects:sha-8e06eda
+    image: ghcr.io/sustainability-zhaw/extraction-projects:sha-1cd3c6b
     restart: "no"
     configs:
       - source: extraction-projects-config
@@ -130,7 +130,7 @@ services:
     profiles: ["full", "backend"]
 
   ad-resolver: 
-    image: ghcr.io/sustainability-zhaw/ad-resolver:sha-1dd5e73
+    image: ghcr.io/sustainability-zhaw/ad-resolver:sha-22412bd
     restart: "no"
     configs:
       - source: ad-resolver-config
@@ -146,7 +146,7 @@ services:
     profiles: ["full", "backend"]
 
   resolver-classification: 
-    image: ghcr.io/sustainability-zhaw/resolver-classification:sha-aae75b1
+    image: ghcr.io/sustainability-zhaw/resolver-classification:sha-546f9b3
     restart: "no"
     configs:
       - source: resolver-classification-config
@@ -159,7 +159,7 @@ services:
     profiles: ["full", "backend"]
 
   resolver-department: 
-    image: ghcr.io/sustainability-zhaw/resolver-department:sha-1d20608
+    image: ghcr.io/sustainability-zhaw/resolver-department:sha-bf2f002
     restart: "no"
     configs:
       - source: resolver-department-config
@@ -172,7 +172,7 @@ services:
     profiles: ["full", "backend"]
 
   dgraph-schema:
-    image: ghcr.io/sustainability-zhaw/dgraph-schema:sha-099988b
+    image: ghcr.io/sustainability-zhaw/dgraph-schema:sha-bc5f77b
     restart: 'no'
     environment:
       DGRAPH_SERVER: http://database:8080

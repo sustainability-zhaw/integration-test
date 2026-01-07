@@ -101,7 +101,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-projects: 
-    image: ghcr.io/sustainability-zhaw/extraction-projects:sha-1cd3c6b
+    image: ghcr.io/sustainability-zhaw/extraction-projects:sha-749e82a
     restart: "no"
     configs:
       - source: extraction-projects-config
@@ -117,7 +117,7 @@ services:
     profiles: ["full", "backend"]
 
   extraction-evento: 
-    image: ghcr.io/sustainability-zhaw/extraction-evento:sha-8399418
+    image: ghcr.io/sustainability-zhaw/extraction-evento:sha-ff99ba3
     restart: "no"
     configs:
       - source: extraction-evento-config
@@ -188,7 +188,7 @@ services:
     profiles: ["full", "backend"]
 
   dgraph-schema:
-    image: ghcr.io/sustainability-zhaw/dgraph-schema:sha-bc5f77b
+    image: ghcr.io/sustainability-zhaw/dgraph-schema:sha-672e5a5
     restart: 'no'
     environment:
       DGRAPH_SERVER: http://database:8080

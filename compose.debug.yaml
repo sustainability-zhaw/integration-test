@@ -23,6 +23,10 @@ services:
     user: root
     command: ["sh", "-c", "tail -f /dev/null"]
 
+  extraction-moku:
+    user: root
+    command: ["sh", "-c", "tail -f /dev/null"]
+
   ad-resolver:
     user: root
     command: ["sh", "-c", "tail -f /dev/null"]

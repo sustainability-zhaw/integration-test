@@ -23,6 +23,10 @@ services:
     volumes:
       - ../extraction-evento/src:/app/src/
 
+  extraction-moku:
+    volumes:
+      - ../extraction-moku/src:/app/src/
+
   ad-resolver:
     volumes:
       - ../ad-resolver/src:/app

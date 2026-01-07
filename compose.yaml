@@ -129,6 +129,22 @@ services:
         condition: service_healthy
     profiles: ["full", "backend"]
 
+  extraction-moku: 
+    image: ghcr.io/sustainability-zhaw/extraction-moku:sha-618e097
+    restart: "no"
+    configs:
+      - source: extraction-moku-config
+        target: /etc/app/config.json
+    secrets:
+      - source: extraction-moku-secrets
+        target: /etc/app/secrets.json
+    depends_on:
+      database:
+        condition: service_healthy
+      message-queue:
+        condition: service_healthy
+    profiles: ["full", "backend"]
+
   ad-resolver: 
     image: ghcr.io/sustainability-zhaw/ad-resolver:sha-22412bd
     restart: "no"
@@ -205,6 +221,8 @@ configs:
     file: ./configs/extraction-projects/config.json
   extraction-evento-config:
     file: ./configs/extraction-evento/config.json
+  extraction-moku-config:
+    file: ./configs/extraction-moku/config.json
   resolver-classification-config:
     file: ./configs/resolver-classification/config.json
   resolver-department-config:
@@ -213,5 +231,7 @@ configs:
 secrets:
   extraction-projects-secrets:
     file: ./secrets/extraction-projects/secrets.json
+  extraction-moku-secrets:
+    file: ./secrets/extraction-moku/secrets.json
   ad-resolver-secrets:
     file: ./secrets/ad-resolver/secrets.json

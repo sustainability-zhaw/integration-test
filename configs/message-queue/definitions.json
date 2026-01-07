@@ -121,6 +121,12 @@
             "tags":""
         },
         {
+            "name":"extraction-moku",
+            "password_hash":"fd0GyzAf6C6hmgCJ5VU+TSyzUNlzypPlGb7VDKkqUvJqVxyd",
+            "hashing_algorithm":"rabbit_password_hashing_sha256",
+            "tags":""
+        },
+        {
             "name":"keyword-webhook",
             "password_hash":"fd0GyzAf6C6hmgCJ5VU+TSyzUNlzypPlGb7VDKkqUvJqVxyd",
             "hashing_algorithm":"rabbit_password_hashing_sha256",
@@ -176,6 +182,13 @@
         },
         {
             "user":"extraction-evento",
+            "vhost":"/",
+            "configure":".*",
+            "write":".*",
+            "read":".*"
+        },
+        {
+            "user":"extraction-moku",
             "vhost":"/",
             "configure":".*",
             "write":".*",

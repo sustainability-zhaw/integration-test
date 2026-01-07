@@ -1,0 +1,4 @@
+{
+    "dbHost": "database:8080",
+    "logLevel": "debug"
+}

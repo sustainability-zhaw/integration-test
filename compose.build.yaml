@@ -29,6 +29,10 @@ services:
     image: !reset null
     build: ../extraction-evento
 
+  extraction-moku: 
+    image: !reset null
+    build: ../extraction-moku
+
   ad-resolver: 
     image: !reset null
     build: ../ad-resolver

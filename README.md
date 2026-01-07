@@ -83,6 +83,8 @@ docker compose --profile full down
 |sdg-indexer|:white_check_mark:||:white_check_mark:||
 |extraction-dspace|:white_check_mark:||:white_check_mark:||
 |extraction-projects|:white_check_mark:||:white_check_mark:||
+|extraction-evento|:white_check_mark:||:white_check_mark:||
+|extraction-moku|:white_check_mark:||:white_check_mark:||
 |ad-resolve|:white_check_mark:||:white_check_mark:||
 |resolver-classification|:white_check_mark:||:white_check_mark:||
 |resolver-department|:white_check_mark:||:white_check_mark:||

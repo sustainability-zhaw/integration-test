@@ -1,0 +1,45 @@
+services:
+  sustainability-dashboard:
+    volumes: 
+      - ../sustainability-dashboard/site:/usr/share/caddy
+
+  download-gateway:
+    volumes:
+      - ../download-gateway/src:/app
+
+  sdg-indexer: 
+    volumes:
+      - ../sdg-indexer/src:/app
+
+  extraction-dspace:
+    volumes:
+      - ../extraction-dspace/src:/app
+
+  extraction-projects:
+    volumes:
+      - ../extraction-projects/src:/app
+
+  extraction-evento:
+    volumes:
+      - ../extraction-evento/src:/app/src/
+
+  extraction-moku:
+    volumes:
+      - ../extraction-moku/src:/app/src/
+
+  ad-resolver:
+    volumes:
+      - ../ad-resolver/src:/app
+
+  resolver-classification:
+    volumes:
+      - ../resolver-classification/src:/app
+
+  resolver-department:
+    volumes:
+      - ../resolver-department/src:/app
+
+  dgraph-schema:
+   volumes:
+      - ../dgraph-schema/schema:/data/schema
+      - ../dgraph-schema/sampledata/sampledata

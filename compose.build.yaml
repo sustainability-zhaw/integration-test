@@ -1,0 +1,50 @@
+services:
+  sustainability-dashboard:
+    image: !reset null
+    build:
+      context: ../sustainability-dashboard
+      dockerfile: local.Dockerfile
+
+  download-gateway:
+    image: !reset null
+    build: ../download-gateway
+
+  keyword-webhook:
+    image: !reset null
+    build: ../keyword-webhook 
+
+  sdg-indexer: 
+    image: !reset null
+    build: ../sdg-indexer
+
+  extraction-dspace: 
+    image: !reset null
+    build: ../extraction-dspace
+
+  extraction-projects: 
+    image: !reset null
+    build: ../extraction-projects
+
+  extraction-evento: 
+    image: !reset null
+    build: ../extraction-evento
+
+  extraction-moku: 
+    image: !reset null
+    build: ../extraction-moku
+
+  ad-resolver: 
+    image: !reset null
+    build: ../ad-resolver
+
+  resolver-classification: 
+    image: !reset null
+    build: ../resolver-classification
+
+  resolver-department: 
+    image: !reset null
+    build: ../resolver-department
+
+  dgraph-schema:
+    image: !reset null
+    build: ../dgraph-schema
